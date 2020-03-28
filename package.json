@@ -1,0 +1,39 @@
+{
+  "name": "flygood",
+  "version": "0.0.1",
+  "description": "A mobile web app that allows offsetting flights and tipping initiatives",
+  "main": "index.js",
+  "scripts": {
+    "develop": "next",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmbch/flygood.git"
+  },
+  "keywords": [],
+  "author": "dmbch <daniel@dmbch.net>",
+  "license": "MIT",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/dmbch/flygood/issues"
+  },
+  "homepage": "https://github.com/dmbch/flygood#readme",
+  "dependencies": {
+    "next": "^9.3.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "husky": "^4.2.3",
+    "prettier": "^2.0.2"
+  }
+}
