@@ -27,6 +27,25 @@ const HEADERS = [
   'type',
   'source',
 ];
+const KEYS = [
+  'id',
+  'name',
+  'city',
+  'country',
+  'iata',
+  'icao',
+  'latitude',
+  'longitude',
+];
+
+const cleanData = (results) =>
+  results.map((result) =>
+    Object.fromEntries(
+      Object.entries(result)
+        .filter(([key]) => KEYS.includes(key))
+        .map(([key, value]) => [key, value !== '\\N' ? value : null])
+    )
+  );
 
 const fetchCSV = async () =>
   new Promise((resolve, reject) => {
@@ -38,7 +57,7 @@ const fetchCSV = async () =>
       response
         .pipe(csv(HEADERS))
         .on('data', (data) => results.push(data))
-        .on('end', () => resolve(results))
+        .on('end', () => resolve(cleanData(results)))
         .on('error', (error) => reject(error));
     });
     request.on('error', (error) => reject(error));
@@ -55,7 +74,7 @@ const writeJSON = async (results, file) =>
 
 const createIndex = (documents) =>
   lunr(function () {
-    this.ref('iata');
+    this.ref('id');
     this.field('name');
     this.field('city');
     this.field('country');
