@@ -3,9 +3,11 @@ const { writeFile } = require('fs');
 const { get } = require('https');
 
 const csv = require('csv-parser');
+const lunr = require('lunr');
 
 const DATA_DIR = join(dirname(__dirname), 'data');
 const DATA_FILE = join(DATA_DIR, 'airportData.json');
+const INDEX_FILE = join(DATA_DIR, 'airportIndex.json');
 
 const URL =
   'https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat';
@@ -51,10 +53,22 @@ const writeJSON = async (results, file) =>
     });
   });
 
+const createIndex = (documents) =>
+  lunr(function () {
+    this.ref('iata');
+    this.field('name');
+    this.field('city');
+    this.field('country');
+    this.field('iata');
+    this.field('icao');
+    documents.forEach((doc) => this.add(doc));
+  });
+
 const fetchAndWrite = async () => {
   try {
     const results = await fetchCSV();
     await writeJSON(results, DATA_FILE);
+    await writeJSON(createIndex(results), INDEX_FILE);
     console.log(`SUCCESS: fetched and wrote airport data to ${DATA_DIR}\n`);
   } catch (error) {
     console.error(`ERROR: ${error.stack || error}\n`);
