@@ -28,7 +28,6 @@ const HEADERS = [
   'source',
 ];
 const KEYS = [
-  'id',
   'name',
   'city',
   'country',
@@ -36,16 +35,19 @@ const KEYS = [
   'icao',
   'latitude',
   'longitude',
+  'altitude',
 ];
 
 const cleanData = (results) =>
-  results.map((result) =>
-    Object.fromEntries(
-      Object.entries(result)
-        .filter(([key]) => KEYS.includes(key))
-        .map(([key, value]) => [key, value !== '\\N' ? value : null])
-    )
-  );
+  results
+    .filter(({ icao }) => icao !== '\\N')
+    .map((result) =>
+      Object.fromEntries(
+        Object.entries(result)
+          .filter(([key]) => KEYS.includes(key))
+          .map(([key, value]) => [key, value !== '\\N' ? value : null])
+      )
+    );
 
 const fetchCSV = async () =>
   new Promise((resolve, reject) => {
@@ -74,7 +76,7 @@ const writeJSON = async (results, file) =>
 
 const createIndex = (documents) =>
   lunr(function () {
-    this.ref('id');
+    this.ref('icao');
     this.field('name');
     this.field('city');
     this.field('country');
