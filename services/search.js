@@ -5,7 +5,7 @@ import airportIndex from '../data/airportIndex.json';
 
 const index = Index.load(airportIndex);
 
-export const find = (ref) => airportData.find(({ icao }) => ref === icao);
+export const find = (ref) => airportData.find(({ iata }) => ref === iata);
 
 export const search = (q, n) => {
   const results = [];

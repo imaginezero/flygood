@@ -4,48 +4,34 @@ const { get } = require('https');
 
 const csv = require('csv-parser');
 const lunr = require('lunr');
+const { getName } = require('country-list');
 
 const DATA_DIR = join(dirname(__dirname), 'data');
 const DATA_FILE = join(DATA_DIR, 'airportData.json');
 const INDEX_FILE = join(DATA_DIR, 'airportIndex.json');
+const URL = 'https://ourairports.com/data/airports.csv';
 
-const URL =
-  'https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat';
-const HEADERS = [
-  'id',
-  'name',
-  'city',
-  'country',
-  'iata',
-  'icao',
-  'latitude',
-  'longitude',
-  'altitude',
-  'utcOffset',
-  'dst',
-  'timezone',
-  'type',
-  'source',
-];
-const KEYS = [
-  'name',
-  'city',
-  'country',
-  'iata',
-  'icao',
-  'latitude',
-  'longitude',
-  'altitude',
-];
+const mappers = {
+  name: ({ name }) => name,
+  city: ({ municipality }) => municipality,
+  country: ({ iso_country }) => getName(iso_country),
+  iata: ({ iata_code }) => iata_code,
+  icao: ({ ident }) => ident,
+  longitude: ({ longitude_deg }) => longitude_deg,
+  latitude: ({ latitude_deg }) => latitude_deg,
+  altitude: ({ elevation_ft }) => Math.round(elevation_ft * 3.28084),
+};
 
-const cleanData = (results) =>
+const processData = (results) =>
   results
-    .filter(({ icao }) => icao !== '\\N')
+    .filter(
+      ({ type, iata_code }) =>
+        /airport/.test(type) && /^[A-Z0-9]{3}$/.test(iata_code)
+    )
     .map((result) =>
-      Object.fromEntries(
-        Object.entries(result)
-          .filter(([key]) => KEYS.includes(key))
-          .map(([key, value]) => [key, value !== '\\N' ? value : null])
+      Object.entries(mappers).reduce(
+        (object, [key, map]) => ({ ...object, [key]: map(result) }),
+        {}
       )
     );
 
@@ -57,9 +43,9 @@ const fetchCSV = async () =>
       }
       const results = [];
       response
-        .pipe(csv(HEADERS))
+        .pipe(csv())
         .on('data', (data) => results.push(data))
-        .on('end', () => resolve(cleanData(results)))
+        .on('end', () => resolve(processData(results)))
         .on('error', (error) => reject(error));
     });
     request.on('error', (error) => reject(error));
@@ -76,7 +62,7 @@ const writeJSON = async (results, file) =>
 
 const createIndex = (documents) =>
   lunr(function () {
-    this.ref('icao');
+    this.ref('iata');
     this.field('name');
     this.field('city');
     this.field('country');
