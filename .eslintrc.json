@@ -10,7 +10,8 @@
   ],
   "rules": {
     "prettier/prettier": "error",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off"
   },
   "parserOptions": {
     "ecmaVersion": 2019,
@@ -21,7 +22,8 @@
   },
   "env": {
     "node": true,
-    "es6": true
+    "es6": true,
+    "browser": true
   },
   "globals": {
     "Promise": true,
