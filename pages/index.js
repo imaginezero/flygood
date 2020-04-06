@@ -1,12 +1,14 @@
 import { Fragment } from 'react';
 
-import { Headline, Content } from '../components';
+import { Headline, Content, AirportField } from '../components';
 
 export default function Index() {
   return (
     <Fragment>
       <Headline>Describe Your Trip</Headline>
-      <Content></Content>
+      <Content>
+        <AirportField />
+      </Content>
     </Fragment>
   );
 }
