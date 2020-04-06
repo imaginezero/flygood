@@ -25,6 +25,7 @@
   "dependencies": {
     "@turf/distance": "^6.0.1",
     "downshift": "^5.0.5",
+    "lodash.isfunction": "^3.0.9",
     "lunr": "^2.3.8",
     "next": "^9.3.2",
     "react": "^16.13.1",
