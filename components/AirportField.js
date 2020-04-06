@@ -4,13 +4,7 @@ import { useSuggestions } from '../hooks/useSuggestions';
 
 import { TextInput } from './TextField';
 import { Label, Error } from './Label';
-
-const menuStyles = {
-  overflowY: 'auto',
-  position: 'relative',
-  zIndex: 1000,
-  listStyle: 'none',
-};
+import { AirportCard } from './AirportCard';
 
 export const AirportField = ({
   id = 'airport',
@@ -30,7 +24,7 @@ export const AirportField = ({
     getItemProps,
   } = useCombobox({
     items: inputItems,
-    itemToString: (item) => item.name,
+    itemToString: (item) => (item ? item.name : null),
     onSelectedItemChange: ({ selectedItem }) =>
       onChange && onChange(selectedItem),
     onInputValueChange: async ({ inputValue }) => {
@@ -50,18 +44,17 @@ export const AirportField = ({
         valid={error ? 'false' : 'true'}
         styles={{ width: 'w-full' }}
       />
-      <ul {...getMenuProps()} style={menuStyles}>
+      <ul
+        {...getMenuProps()}
+        className="relative mx-2 z-50 rounded-b-sm shadow-md"
+      >
         {isOpen &&
           inputItems.map((item, index) => (
-            <li
-              style={
-                highlightedIndex === index ? { backgroundColor: '#bde4ff' } : {}
-              }
-              selected
-              key={`${index}`}
-              {...getItemProps({ item, index })}
-            >
-              {item.name}
+            <li key={`${index}`} {...getItemProps({ item, index })}>
+              <AirportCard
+                airport={item}
+                selected={highlightedIndex === index}
+              />
             </li>
           ))}
       </ul>

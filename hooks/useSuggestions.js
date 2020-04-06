@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
-const SEARCH_URL = '/api/search?q=';
+export const getSearchURL = (q, n) =>
+  `/api/search?q=${encodeURIComponent(q)}${n ? `&n=${Number(n)}` : ''}`;
 
-export const fetchSuggestions = (input) =>
-  fetch(`${SEARCH_URL}${encodeURIComponent(input)}`).then((response) =>
+export const fetchSuggestions = (q, n) =>
+  fetch(getSearchURL(q, n)).then((response) =>
     response.ok
       ? response.json()
       : Promise.reject(new Error(response.statusText))
@@ -11,11 +12,11 @@ export const fetchSuggestions = (input) =>
 
 export const useSuggestions = (delay) => {
   const [timeoutID, setTimeoutID] = useState(null);
-  return (input) =>
+  return (q, n = 5) =>
     new Promise((resolve, reject) => {
       if (timeoutID) clearTimeout(timeoutID);
       setTimeoutID(
-        setTimeout(() => fetchSuggestions(input).then(resolve, reject), delay)
+        setTimeout(() => fetchSuggestions(q, n).then(resolve, reject), delay)
       );
     });
 };
