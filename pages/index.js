@@ -7,7 +7,7 @@ export default function Index() {
     <Fragment>
       <Headline>Describe Your Trip</Headline>
       <Content>
-        <AirportField />
+        <AirportField styles={{ width: 'w-full' }} />
       </Content>
     </Fragment>
   );
