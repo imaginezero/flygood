@@ -4,7 +4,6 @@ import Head from 'next/head';
 import { withTrip } from '../hooks';
 import { Page } from '../components';
 
-import 'normalize.css';
 import './global.css';
 
 const App = withTrip(({ Component, pageProps }) => (
