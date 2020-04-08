@@ -1,28 +1,24 @@
-import { Fragment, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { useCombobox } from 'downshift';
 
 import { useSuggestions } from '../hooks';
 
-import { TextInput } from './TextField';
+import { TextInput, TextInputWrapper } from './TextField';
 import { Label, Error } from './Label';
 import { AirportCard } from './AirportCard';
 
-import { createStyleableComponent } from './createStyleableComponent';
-
-const SuggestionsList = createStyleableComponent('ul', {
-  base: 'relative mx-2 z-50 rounded-b-sm shadow-md',
-});
-
 const Suggestions = forwardRef(
   ({ isOpen, options, selected, ...menuProps }, ref) => (
-    <SuggestionsList ref={ref} {...menuProps}>
-      {isOpen &&
-        options.map(({ item, props }, index) => (
-          <li key={`${index}`} {...props}>
-            <AirportCard airport={item} selected={selected === index} />
-          </li>
-        ))}
-    </SuggestionsList>
+    <div className="absolute z-50 w-full">
+      <ul className="mx-2 rounded-b-sm shadow-md" ref={ref} {...menuProps}>
+        {isOpen &&
+          options.map(({ item, props }, index) => (
+            <li key={`${index}`} {...props}>
+              <AirportCard airport={item} selected={selected === index} />
+            </li>
+          ))}
+      </ul>
+    </div>
   )
 );
 
@@ -32,6 +28,8 @@ export const AirportField = ({
   onChange = () => {},
   label,
   error,
+  inputStyles,
+  wrapperStyles,
   ...inputProps
 }) => {
   const { suggestions, loadSuggestions } = useSuggestions(250);
@@ -48,7 +46,9 @@ export const AirportField = ({
     initialInputValue: value,
     items: suggestions,
     itemToString: (item) => (item ? item.name : null),
-    onSelectedItemChange: ({ selectedItem }) => onChange(selectedItem),
+    onSelectedItemChange: ({ selectedItem }) => {
+      setTimeout(() => onChange(selectedItem));
+    },
     onInputValueChange: ({ inputValue, isOpen }) => {
       if (isOpen) loadSuggestions(inputValue);
     },
@@ -63,12 +63,13 @@ export const AirportField = ({
   }));
 
   return (
-    <Fragment>
+    <TextInputWrapper className="relative" styles={wrapperStyles}>
       {label && <Label {...getLabelProps()}>{label}</Label>}
       <div {...getComboboxProps()}>
         <TextInput
           {...inputProps}
           {...getInputProps()}
+          styles={inputStyles}
           valid={error ? 'false' : 'true'}
         />
       </div>
@@ -79,6 +80,6 @@ export const AirportField = ({
         options={options}
       />
       {error && <Error>{error}</Error>}
-    </Fragment>
+    </TextInputWrapper>
   );
 };

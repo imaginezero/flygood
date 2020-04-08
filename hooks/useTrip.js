@@ -22,27 +22,38 @@ const fetchTrip = (...codes) =>
       : Promise.reject(new Error(response.statusText))
   );
 
-export const withTrip = (Component) => (props) => {
-  const [trip, setTrip] = useState(calculateTrip([]));
-  return createElement(
+export const withTrip = (Component) => (props) =>
+  createElement(
     TripContext.Provider,
-    {
-      value: [trip, setTrip],
-    },
+    { value: useState(calculateTrip([])) },
     createElement(Component, props)
   );
-};
 
-export const useTrip = () => {
+export const useTrip = (autoload) => {
   const [trip, setTrip] = useContext(TripContext);
-  const { query } = useRouter();
+  const [tripLoading, setLoading] = useState(false);
+  const [tripError, setError] = useState(null);
   const tripQuery = trip.airports.map(({ iata }) => iata).join(',');
   const updateTrip = (airports) => setTrip(calculateTrip(airports));
-  const loadTrip = (...codes) => fetchTrip(...codes).then(updateTrip);
+  const loadTrip = (...codes) => {
+    setLoading(true);
+    setError(null);
+    fetchTrip(...codes).then(
+      (airports) => {
+        updateTrip(airports);
+        setLoading(false);
+      },
+      (error) => {
+        setError(error);
+        setLoading(false);
+      }
+    );
+  };
+  const { query } = useRouter();
   useEffect(() => {
-    if (query.t && query.t !== tripQuery) {
-      loadTrip(...query.t.split(',')).catch(() => {});
+    if (autoload && query.t && query.t !== tripQuery) {
+      loadTrip(...query.t.split(','));
     }
   });
-  return { trip, loadTrip, updateTrip, tripQuery };
+  return { trip, tripLoading, tripError, tripQuery, updateTrip };
 };
