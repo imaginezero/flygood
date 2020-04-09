@@ -23,19 +23,23 @@
   },
   "homepage": "https://github.com/dmbch/flygood#readme",
   "dependencies": {
+    "@fullhuman/postcss-purgecss": "^2.1.0",
+    "@mdx-js/loader": "^1.5.8",
+    "@next/mdx": "^9.3.4",
     "@turf/distance": "^6.0.1",
     "downshift": "^5.0.5",
     "lodash.isfunction": "^3.0.9",
     "lunr": "^2.3.8",
     "next": "^9.3.2",
+    "postcss-preset-env": "^6.7.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "shortid": "^2.2.15"
+    "shortid": "^2.2.15",
+    "tailwindcss": "^1.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@fullhuman/postcss-purgecss": "^2.1.0",
     "country-list": "^2.2.0",
     "csv-parser": "^2.3.2",
     "eslint": "^6.8.0",
@@ -43,8 +47,6 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
     "husky": "^4.2.3",
-    "postcss-preset-env": "^6.7.0",
-    "prettier": "^2.0.2",
-    "tailwindcss": "^1.2.0"
+    "prettier": "^2.0.2"
   }
 }
