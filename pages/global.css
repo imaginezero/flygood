@@ -1,7 +1,7 @@
 /* purgecss start ignore */
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
-/* purgecss end ignore */
 
 html {
   height: 100%;
@@ -24,5 +24,7 @@ body {
 #__next {
   height: 100%;
 }
+
+/* purgecss end ignore */
 
 @import 'tailwindcss/utilities';

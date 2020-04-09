@@ -2,6 +2,8 @@ import { Logo } from './Logo';
 
 import { createStyleableComponent } from './createStyleableComponent';
 
+import { markdown } from './Markdown.module.css';
+
 export const Headline = createStyleableComponent('h2', {
   border: 'border-b',
   color: 'bg-white text-yellow-600 border-gray-400',
@@ -10,7 +12,16 @@ export const Headline = createStyleableComponent('h2', {
 });
 
 export const Content = createStyleableComponent('div', {
+  margin: 'mb-2',
   padding: 'p-3',
+});
+
+export const Markdown = createStyleableComponent('div', {
+  font: 'text-sm',
+  color: 'text-gray-700',
+  margin: 'mb-2',
+  padding: 'p-3',
+  base: markdown,
 });
 
 export const Page = ({ children }) => (
