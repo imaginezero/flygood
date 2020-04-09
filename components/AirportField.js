@@ -24,6 +24,7 @@ const Suggestions = forwardRef(
 
 export const AirportField = ({
   value = '',
+  airport = null,
   id = 'airport',
   onChange = () => {},
   label,
@@ -44,8 +45,11 @@ export const AirportField = ({
     getItemProps,
   } = useCombobox({
     initialInputValue: value,
+    initialHighlightedIndex: 0,
+    defaultSelectedItem: airport,
+    defaultHighlightedIndex: 0,
     items: suggestions,
-    itemToString: (item) => (item ? item.name : null),
+    itemToString: (item) => (item ? item.name : ''),
     onSelectedItemChange: ({ selectedItem }) => {
       setTimeout(() => onChange(selectedItem));
     },

@@ -15,9 +15,11 @@ export const AirportRow = ({
     <div className="flex flex-row justify-center">
       <div className="flex-grow">
         <AirportField
-          id={`airport-${index}`}
-          onChange={handleChange}
           value={airport ? airport.name : ''}
+          airport={airport}
+          id={`airport-${index}`}
+          tabIndex={index + 1}
+          onChange={handleChange}
           valid={!!airport}
           placeholder={`${prefix} Airport`}
           inputStyles={{ width: 'w-full' }}
@@ -41,7 +43,7 @@ export const AirportRow = ({
           className={
             handleRemove
               ? 'block text-gray-600 cursor-pointer'
-              : 'block text-gray-400'
+              : 'block text-gray-400 cursor-not-allowed'
           }
           style={{ marginTop: '.09em' }}
         >
