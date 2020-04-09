@@ -1,7 +1,9 @@
 import { createStyleableComponent } from './createStyleableComponent';
 
 const AirportCardWrapper = createStyleableComponent('div', {
+  border: '',
   color: ({ selected }) => (selected ? 'bg-gray-200' : 'bg-white'),
+  margin: '',
   padding: 'py-1 px-2',
 });
 

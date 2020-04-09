@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import shortid from 'shortid';
 
 import { useTrip } from '../hooks';
@@ -13,13 +14,25 @@ const splice = (array, ...args) => {
 };
 
 export const TripForm = () => {
+  const { push } = useRouter();
   const { trip, tripPromise, updateTrip } = useTrip();
+  const [redirect, setRedirect] = useState(false);
   const [airports, setAirports] = useState([
     [null, shortid()],
     [null, shortid()],
   ]);
+  const disabled = airports.some(([airport]) => !airport);
+  const onSubmit = (event) => {
+    if (!disabled) {
+      updateTrip(airports.map(([airport]) => airport));
+      setRedirect(true);
+    }
+    event.preventDefault();
+  };
   useEffect(() => {
-    if (airports.every(([airport]) => !airport)) {
+    if (redirect && trip.query) {
+      push('/trip', `/trip?t=${trip.query}`);
+    } else if (airports.every(([airport]) => !airport)) {
       if (trip.airports.length) {
         setAirports(trip.airports.map((airport) => [airport, shortid()]));
       } else if (tripPromise) {
@@ -29,11 +42,6 @@ export const TripForm = () => {
       }
     }
   });
-  const disabled = airports.some(([airport]) => !airport);
-  const onSubmit = (event) => {
-    if (!disabled) updateTrip(airports.map(([airport]) => airport));
-    event.preventDefault();
-  };
   return (
     <form onSubmit={onSubmit}>
       {airports.map(([airport, key], index) => {

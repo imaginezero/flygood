@@ -1,6 +1,8 @@
 export { Page, Headline, Content, Markdown } from './Layout';
 
 export { TripForm } from './TripForm';
+export { TripCard } from './TripCard';
+
 export { AirportRow } from './AirportRow';
 export { AirportField } from './AirportField';
 export { AirportCard } from './AirportCard';

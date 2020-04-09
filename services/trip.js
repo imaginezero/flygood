@@ -31,5 +31,7 @@ export const calculateTrip = (airports) => {
   const trees = Math.ceil(emissions * TREES_PER_KG_CO2);
   const cost = Math.ceil(emissions * COST_PER_KG_CO2);
 
-  return { airports, distance, emissions, trees, cost };
+  const query = airports.map(({ iata }) => iata).join(',');
+
+  return { airports, distance, emissions, trees, cost, query };
 };

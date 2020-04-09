@@ -32,7 +32,6 @@ export const withTrip = (Component) => (props) =>
 export const useTrip = () => {
   const [trip, setTrip] = useContext(TripContext);
   const [tripPromise, setTripPromise] = useState(null);
-  const tripQuery = trip.airports.map(({ iata }) => iata).join(',');
   const updateTrip = (airports) => setTrip(calculateTrip(airports));
   const loadTrip = (...codes) => {
     setTripPromise(
@@ -44,9 +43,9 @@ export const useTrip = () => {
   };
   const { query } = useRouter();
   useEffect(() => {
-    if (!tripPromise && query.t && query.t !== tripQuery) {
+    if (!tripPromise && query.t && query.t !== trip.query) {
       loadTrip(...query.t.split(','));
     }
   });
-  return { trip, tripPromise, tripQuery, updateTrip };
+  return { trip, tripPromise, updateTrip };
 };

@@ -15,11 +15,11 @@
 }
 
 .markdown h4 {
-  @apply text-base font-semibold mb-1;
+  @apply text-base font-semibold text-blue-800 mb-1;
 }
 
 .markdown h5 {
-  @apply text-sm font-semibold mb-1;
+  @apply text-sm font-semibold text-blue-800 mb-1;
 }
 
 .markdown p,
