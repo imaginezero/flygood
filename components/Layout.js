@@ -27,10 +27,10 @@ export const Markdown = createStyleableComponent('div', {
 });
 
 export const Page = ({ children }) => (
-  <div className="flex flex-col h-full">
+  <div className="flex flex-col">
     <div className="flex flex-row justify-center w-full bg-blue-800 border-t-2 border-yellow-600">
       <Link href="/">
-        <div className="flex flex-row flex-grow-0 w-full h-12 py-1 px-3 sm:w-128 sm:px-0 text-white">
+        <div className="flex flex-row flex-grow-0 flex-shrink-0 w-full h-12 py-1 px-3 sm:w-128 sm:px-0 text-white">
           <Logo
             style={{ marginLeft: '-0.4rem' }}
             className="h-full w-12 fill-current cursor-pointer"
@@ -41,7 +41,7 @@ export const Page = ({ children }) => (
         </div>
       </Link>
     </div>
-    <div className="flex-grow self-center w-full sm:w-128 sm:border-l sm:border-r sm:border-gray-400 bg-gray-300">
+    <div className="self-center w-full sm:w-128 sm:border-l sm:border-r sm:border-gray-400 bg-gray-300">
       {children}
     </div>
   </div>
