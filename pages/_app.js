@@ -18,6 +18,11 @@ const App = withTrip(({ Component, pageProps }) => (
         href="https://fonts.googleapis.com/css2?family=Stint+Ultra+Expanded&display=fallback"
         rel="stylesheet"
       />
+      <link
+        href="data:image/x-icon;,"
+        type="image/x-icon"
+        rel="shortcut icon"
+      />
     </Head>
     <Page>
       <Component {...pageProps} />
