@@ -30,14 +30,18 @@
 
 .markdown ol,
 .markdown ul {
-  @apply list-inside;
+  @apply list-outside;
 }
 
 .markdown ol {
   @apply list-decimal;
 }
 
+.markdown ul li {
+  @apply pl-4 mb-1;
+}
+
 .markdown ul li:before {
-  @apply text-blue-800 inline-block w-4;
+  @apply text-blue-800 inline-block w-4 -ml-4;
   content: '\2022';
 }
