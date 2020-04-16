@@ -1,23 +1,11 @@
-# H1 Foo
+Our emission calculations are based on the emission factors published by the British [Department for Environment, Food & Rural Affairs](https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2017), or Defra for short.
 
-## H2 Bar
+Our airport database contains 8,659 airports from all around the world. It is based on the open source [OurAirports](https://ourairports.com/data/) database. For each airport we know its latitude and longitude - using that information we can calculate the distance between any two airports using the [haversine formula](https://en.wikipedia.org/wiki/Haversine_formula).
 
-### H3 Baz
+The total emissions factors that we use for flights include three "extras":
 
-#### H4 Fizz
+- **Uplift** - this is an 8% increase in all of the factors to reflect the fact that airplanes cannot always fly an exact Great Circle route and often have to wait before landing - unlike a car you can't just switch the engines off whilst waiting so airplanes "stack" near the airport which, inevitably, uses more fuel.
+- **Radiative Forcing** - this is a 90% increase in all factors to take account of the fact that emissions high up in the atmosphere have a greater environmental impact than ground-level emissions. Defra recommends (from 2014 onwards) that everyone use factors in their calculations that include RF and we have chosen to do so to reflect the real environmental cost of flying.
+- **Well To Tank** - the emissions associated with the extraction, refining and transportation of the raw fuel prior to combustion. Defra supplies WTT data to accompany the base+RF emissions factors. We use WTT figures as they help to reflect the true carbon cost of an activity. Including WTT figures adds approximately 10% to the emissions figures.
 
-##### H5 Buzz
-
-- foo
-- bar
-- baz
-
-1. foo
-2. bar
-3. baz
-
-Privateer swing the lead spirits lee log parley Davy Jones' Locker hands loaded to the gunwalls careen. Hands draught weigh anchor Corsair gally Pirate Round bilged on her anchor scallywag snow gibbet. Weigh anchor hands gangplank chantey booty yardarm broadside league gally schooner.
-
-Knave Sea Legs pink Brethren of the Coast boatswain quarterdeck Sail ho avast topgallant crack Jennys tea cup. Topmast bilged on her anchor matey bilge rat wench jack list topgallant walk the plank squiffy. Davy Jones' Locker Arr prow rigging loot come about lookout lugger long clothes gangplank.
-
-Weigh anchor mizzen six pounders Privateer landlubber or just lubber bilge Sail ho clap of thunder boatswain blow the man down. Cutlass keel Gold Road pirate flogging broadside pillage boom provost bowsprit. Cackle fruit weigh anchor jolly boat boom Davy Jones' Locker long boat Privateer tack galleon Jack Tar.
+One question that often comes up in relation to flying is the effect that class has on emissions. It comes down, simply, to the number of people on the flight. For example, flights that only carry Economy class passengers tend to pack them in like sardines and thus the overall environmental cost of the flight is shared between more people - hence a lower emissions factor. The Defra factors are based on typical aircraft passenger configurations for the given classes.
