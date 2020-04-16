@@ -22,17 +22,39 @@ export const TripCard = () => {
       <table className="w-full text-sm text-gray-800">
         <tbody>
           <tr>
-            <td>Distance</td>
+            <td>Total distance</td>
             <td>
-              <b>{pluralize(trip.distance, 'kilometer')}</b>
+              <b>{`${trip.distance} km`}</b>
+            </td>
+          </tr>
+          <tr>
+            <td>Total emissions</td>
+            <td>
+              <b>{`${trip.emissions} kg`}</b>
             </td>
           </tr>
           <tr>
             <td>
-              CO<sub>2</sub> Emission
+              Carbon dioxide (CO<sub>2</sub>) emissions
             </td>
             <td>
-              <b>{pluralize(trip.emissions, 'kilogram')}</b>
+              <b>{`${trip.details.co2} kg`}</b>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Methane (CH<sub>4</sub>) emissions
+            </td>
+            <td>
+              <b>{`${trip.details.ch4} kg`}</b>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Nitrous oxide (N<sub>2</sub>O) emissions
+            </td>
+            <td>
+              <b>{`${trip.details.n2o} kg`}</b>
             </td>
           </tr>
           <tr>
@@ -44,7 +66,7 @@ export const TripCard = () => {
           <tr>
             <td>Cost to offset emissions</td>
             <td>
-              <b>{`${trip.cost}€`}</b>
+              <b>{`${trip.cost} €`}</b>
             </td>
           </tr>
         </tbody>
