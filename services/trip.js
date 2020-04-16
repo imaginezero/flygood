@@ -1,37 +1,76 @@
+// helper using haversine formula to determine great circle distance
+// https://en.wikipedia.org/wiki/Haversine_formula
 import calculateDistance from '@turf/distance';
 
-// carbon dioxide emissions in kg, ~250g/km per passenger
-// n.b.: atmosfair appear to assume ~320g/km per passenger
-// https://www.carbonindependent.org/22.html
-const EMISSIONS_PER_KM = 0.25;
-
-// trees needed for carbon sequestration, ~67kg/tree in 30 years
-// https://carbonneutral.com.au/faqs/
-const TREES_PER_KG_CO2 = 0.015;
+// conversion factors and additional data required for emission calculation
+// https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2017
+import {
+  SHORT_HAUL_THRESHOLD,
+  LONG_HAUL_THRESHOLD,
+  DOMESTIC_FLIGHT,
+  SHORT_HAUL_FLIGHT,
+  LONG_HAUL_FLIGHT,
+  ECONOMY_CLASS,
+  FLIGHT_CLASSES,
+  EMISSION_DATA,
+} from '../data/defraData';
 
 // cost of planting trees, 23€ per ton of carbon dioxide
 // https://www.atmosfair.de/en/offset/fix
-const COST_PER_KG_CO2 = 0.023;
+const COST_PER_KG_CO2E = 0.023;
 
-export const calculateTrip = (airports) => {
-  const distance = airports.reduce((result, current, index) => {
-    const next = airports[index + 1];
-    if (next) {
-      const nextDistance = calculateDistance(
-        [current.longitude, current.latitude, current.altitude],
-        [next.longitude, next.latitude, next.altitude],
-        { units: 'kilometers' }
-      );
-      return Math.round(result + nextDistance);
-    }
-    return result;
-  }, 0);
+// trees needed for carbon sequestration, ~67kg/tree in 30 years
+// https://carbonneutral.com.au/faqs/
+const TREES_PER_KG_CO2E = 0.015;
 
-  const emissions = Math.ceil(distance * EMISSIONS_PER_KM);
-  const trees = Math.ceil(emissions * TREES_PER_KG_CO2);
-  const cost = Math.ceil(emissions * COST_PER_KG_CO2);
+const round = (number, digits = 2) => {
+  const factor = Math.pow(10, digits);
+  return Math.round((number + Number.EPSILON) * factor) / factor;
+};
 
-  const query = airports.map(({ iata }) => iata).join(',');
+const determineType = (distance) => {
+  if (distance >= LONG_HAUL_THRESHOLD) return LONG_HAUL_FLIGHT;
+  if (distance >= SHORT_HAUL_THRESHOLD) return SHORT_HAUL_FLIGHT;
+  return DOMESTIC_FLIGHT;
+};
 
-  return { airports, distance, emissions, trees, cost, query };
+const analyzeTrip = (airports, flightClass) =>
+  airports.reduce(
+    (results, current, index) => {
+      const next = airports[index + 1];
+      if (next) {
+        const distance = calculateDistance(
+          [current.longitude, current.latitude, current.altitude],
+          [next.longitude, next.latitude, next.altitude],
+          { units: 'kilometers' }
+        );
+        const flightType = determineType(distance);
+        Object.entries(EMISSION_DATA[flightType][flightClass]).forEach(
+          ([key, ratio]) => (results[key] += distance * ratio)
+        );
+        results.distance += distance;
+      }
+      return results;
+    },
+    { airports, distance: 0, co2e: 0, co2: 0, ch4: 0, n2o: 0, wtt: 0 }
+  );
+
+const evaluateTrip = ({ airports, distance, co2e, co2, ch4, n2o, wtt }) => {
+  const emissions = co2e + wtt;
+  return {
+    airports,
+    distance: round(distance, 1),
+    emissions: round(emissions, 1),
+    details: { co2: round(co2, 2), ch4: round(ch4, 2), n2o: round(n2o, 2) },
+    cost: round(emissions * COST_PER_KG_CO2E, 2),
+    trees: Math.ceil(emissions * TREES_PER_KG_CO2E),
+    query: airports.map(({ iata }) => iata).join(','),
+  };
+};
+
+export const calculateTrip = (airports, flightClass = ECONOMY_CLASS) => {
+  if (!FLIGHT_CLASSES.includes(flightClass)) {
+    throw new Error('unknown flight class');
+  }
+  return evaluateTrip(analyzeTrip(airports, flightClass));
 };
