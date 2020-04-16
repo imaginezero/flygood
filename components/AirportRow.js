@@ -15,7 +15,7 @@ export const AirportRow = ({
     <div className="flex flex-row justify-center">
       <div className="flex-grow">
         <AirportField
-          value={airport ? airport.name : ''}
+          value={airport ? `${airport.city} (${airport.iata})` : ''}
           airport={airport}
           id={`airport-${index}`}
           tabIndex={index + 1}

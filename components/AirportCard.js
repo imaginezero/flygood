@@ -11,9 +11,11 @@ export const AirportCard = ({ airport, ...props }) => {
   const { name, city, country, iata, icao } = airport;
   return (
     <AirportCardWrapper {...props}>
-      <h3 className="text-s leading-tight text-gray-700">{name}</h3>
+      <h3 className="text-s leading-tight text-gray-700">
+        {city} ({iata})
+      </h3>
       <p className="text-xs text-gray-600">
-        {city} ({country}), {iata}/{icao}
+        {name} ({country}), {icao}
       </p>
     </AirportCardWrapper>
   );

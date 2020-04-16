@@ -47,14 +47,13 @@ export const AirportField = ({
     initialInputValue: value,
     initialHighlightedIndex: 0,
     defaultSelectedItem: airport,
-    defaultHighlightedIndex: 0,
     items: suggestions,
-    itemToString: (item) => (item ? item.name : ''),
+    itemToString: (item) => (item ? `${item.city} (${item.iata})` : ''),
     onSelectedItemChange: ({ selectedItem }) => {
       setTimeout(() => onChange(selectedItem));
     },
     onInputValueChange: ({ inputValue, isOpen }) => {
-      if (isOpen) loadSuggestions(inputValue);
+      if (isOpen) loadSuggestions(inputValue.replace(/[()]/g, ''));
     },
     labelId: `${id}-label`,
     inputId: `${id}-input`,
