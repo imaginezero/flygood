@@ -9,7 +9,7 @@ export const PaymentButton = () => {
     <Button
       type="button"
       onClick={() => process(trip.cost)}
-      disabled={processing}
+      disabled={processing || !trip.cost}
       tabIndex="0"
     >
       Offset Emissions
