@@ -1,6 +1,12 @@
 import { Fragment } from 'react';
 
-import { Headline, Content, Markdown, TripCard } from '../components';
+import {
+  Headline,
+  Content,
+  Markdown,
+  TripCard,
+  PaymentCard,
+} from '../components';
 import { Info } from '../content';
 
 export default function Trip() {
@@ -9,6 +15,7 @@ export default function Trip() {
       <Headline>Trip Analysis</Headline>
       <Content>
         <TripCard />
+        <PaymentCard />
       </Content>
       <Headline>More Info</Headline>
       <Markdown>
