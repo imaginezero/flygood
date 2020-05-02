@@ -1,7 +1,10 @@
 import { useState } from 'react';
 
-const getSearchURL = (q, n) =>
-  `/api/search?q=${encodeURIComponent(q)}${n ? `&n=${Number(n)}` : ''}`;
+const getSearchURL = (q, n) => {
+  const params = new URLSearchParams({ q });
+  if (n) params.set('n', Number(n));
+  return `/api/search?${params.toString()}`;
+};
 
 const fetchSuggestions = (q, n) =>
   fetch(getSearchURL(q, n)).then((response) =>
