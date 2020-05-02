@@ -2,11 +2,11 @@ import 'dotenv/config';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
-const nowUrl = new URL(process.env.NOW_URL);
+const vercelUrl = new URL(process.env.VERCEL_URL);
 
 const validateReferer = (referer) => {
   const refererUrl = new URL(referer);
-  if (nowUrl.origin !== refererUrl.origin) {
+  if (vercelUrl.origin !== refererUrl.origin) {
     throw new Error('Referer origin mismatch');
   }
 };
@@ -14,7 +14,6 @@ const validateReferer = (referer) => {
 const getSuccessUrl = (referer) => {
   const url = new URL(referer);
   url.pathname = 'success';
-  url.searchParams.set('s', '{CHECKOUT_SESSION_ID}');
   return url.toString();
 };
 
