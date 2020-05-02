@@ -2,14 +2,6 @@ import 'dotenv/config';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
-const vercelUrl = new URL(process.env.VERCEL_URL);
-
-const validateReferer = (referer) => {
-  const refererUrl = new URL(referer);
-  if (vercelUrl.origin !== refererUrl.origin) {
-    throw new Error('Referer origin mismatch');
-  }
-};
 
 const getSuccessUrl = (referer) => {
   const url = new URL(referer);
@@ -41,6 +33,5 @@ export default async (req, res) => {
     success_url: getSuccessUrl(referer),
     cancel_url: referer,
   });
-  validateReferer(referer);
   res.json({ sessionId });
 };
