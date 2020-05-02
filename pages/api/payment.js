@@ -2,12 +2,26 @@ import 'dotenv/config';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
+const nowUrl = new URL(process.env.NOW_URL);
+
+const validateReferer = (referer) => {
+  const refererUrl = new URL(referer);
+  if (nowUrl.origin !== refererUrl.origin) {
+    throw new Error('Referer origin mismatch');
+  }
+};
 
 const getSuccessUrl = (referer) => {
   const url = new URL(referer);
-  url.pathname = '/success';
-  // url.search = `${url.search ? `${url.search}&` : ''}s={CHECKOUT_SESSION_ID}`;
+  url.pathname = 'success';
+  url.searchParams.set('s', '{CHECKOUT_SESSION_ID}');
   return url.toString();
+};
+
+const getItinerary = (referer) => {
+  const url = new URL(referer);
+  const trip = url.searchParams.get('t') || '';
+  return trip.split(',').join(', ');
 };
 
 export default async (req, res) => {
@@ -19,6 +33,7 @@ export default async (req, res) => {
     line_items: [
       {
         name: 'Decarbonization Fee',
+        description: `Itinerary: ${getItinerary(referer)}`,
         amount: e * 100,
         currency: 'eur',
         quantity: n,
@@ -27,5 +42,6 @@ export default async (req, res) => {
     success_url: getSuccessUrl(referer),
     cancel_url: referer,
   });
+  validateReferer(referer);
   res.json({ sessionId });
 };
