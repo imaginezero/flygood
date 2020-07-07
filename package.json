@@ -12,40 +12,39 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dmbch/flygood.git"
+    "url": "git+https://github.com/imaginezero/flygood.git"
   },
   "keywords": [],
   "author": "dmbch <daniel@dmbch.net>",
   "license": "MIT",
   "private": true,
   "bugs": {
-    "url": "https://github.com/dmbch/flygood/issues"
+    "url": "https://github.com/imaginezero/flygood/issues"
   },
-  "homepage": "https://github.com/dmbch/flygood#readme",
+  "homepage": "https://github.com/imaginezero/flygood#readme",
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^2.1.2",
     "@mdx-js/loader": "^1.6.1",
     "@next/mdx": "^9.3.6",
     "@stripe/stripe-js": "^1.5.0",
     "@turf/distance": "^6.0.1",
-    "dotenv": "^8.2.0",
-    "downshift": "^5.2.4",
-    "lodash.isfunction": "^3.0.9",
+    "browserslist": "^4",
+    "hoist-non-react-statics": "^3.3.2",
     "lunr": "^2.3.8",
     "next": "^9.3.6",
+    "postcss-flexbugs-fixes": "^4.2.1",
+    "postcss-normalize": "^9.0.0",
     "postcss-preset-env": "^6.7.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "shortid": "^2.2.15",
-    "stripe": "^8.49.0",
-    "tailwindcss": "^1.4.4"
+    "stripe": "^8.49.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
+    "@commitlint/cli": "^9.0.1",
+    "@commitlint/config-conventional": "^9.0.1",
+    "babel-eslint": "^10.1.0",
     "country-list": "^2.2.0",
     "csv-parser": "^2.3.2",
-    "eslint": "^6.8.0",
+    "eslint": "^7.4.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-react": "^7.19.0",

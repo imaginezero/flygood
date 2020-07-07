@@ -1,30 +1,5 @@
-/* purgecss start ignore */
+@import 'sanitize';
+@import 'sanitize/forms';
+@import 'sanitize/typography';
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-
-html {
-  height: 100%;
-  background: rgb(226, 232, 240);
-}
-
-body {
-  height: 100%;
-  margin: 0;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background: rgb(247, 250, 252);
-  background: linear-gradient(
-    180deg,
-    rgba(247, 250, 252, 1) 0%,
-    rgba(226, 232, 240, 1) 100%
-  );
-}
-
-#__next {
-  height: 100%;
-}
-
-/* purgecss end ignore */
-
-@import 'tailwindcss/utilities';
+@import '../tokens.css';
