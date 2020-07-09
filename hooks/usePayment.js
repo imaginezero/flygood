@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY);
-
 const getPaymentURL = (e = 1, n) => {
   const params = new URLSearchParams({ e: Number(e) });
   if (n) params.set('n', Number(n));
@@ -17,9 +15,15 @@ const fetchPaymentSession = (e, n) =>
   );
 
 const processPayment = async (e, n) => {
-  const { sessionId } = await fetchPaymentSession(e, n);
-  const stripe = await stripePromise;
-  stripe.redirectToCheckout({ sessionId });
+  try {
+    const [stripe, { sessionId }] = await Promise.all([
+      loadStripe(window.stripeKey),
+      fetchPaymentSession(e, n),
+    ]);
+    stripe.redirectToCheckout({ sessionId });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const usePayment = () => {
