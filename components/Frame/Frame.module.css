@@ -1,0 +1,53 @@
+.wrapper {
+  width: 100%;
+}
+
+.headerWrapper {
+  composes: wrapper;
+}
+
+.headerContainer {
+  composes: wrapper from '../atoms.module.css';
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mainWrapper {
+  composes: wrapper;
+}
+
+.mainContainer {
+  composes: wrapper from '../atoms.module.css';
+}
+
+.footerWrapper {
+  composes: wrapper;
+}
+
+.footerContainer {
+  composes: wrapper from '../atoms.module.css';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo,
+.logo:visited {
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  color: var(--gray-800);
+}
+
+.typemark {
+  height: var(--space-xl);
+}
+
+.logomark {
+  height: var(--space-xxxl);
+}
+
+.associationmark {
+  height: var(--space-xxl);
+}
