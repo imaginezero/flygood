@@ -1,11 +1,12 @@
 import Head from 'next/head';
 
 import { withTrip } from '../hooks';
+import { Frame } from '../components';
 
 import './global.css';
 
 const App = withTrip(({ Component, pageProps }) => (
-  <>
+  <Frame>
     <Head>
       <title>FlyGood</title>
       <meta
@@ -14,7 +15,7 @@ const App = withTrip(({ Component, pageProps }) => (
       />
     </Head>
     <Component {...pageProps} />
-  </>
+  </Frame>
 ));
 
 export default App;
