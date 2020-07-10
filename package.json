@@ -28,6 +28,7 @@
     "@stripe/stripe-js": "^1.5.0",
     "@turf/distance": "^6.0.1",
     "browserslist": "^4",
+    "downshift": "^5.4.6",
     "hoist-non-react-statics": "^3.3.2",
     "lunr": "^2.3.8",
     "next": "^9.3.6",
