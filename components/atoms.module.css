@@ -1,0 +1,26 @@
+.wrapper {
+  width: 100%;
+  padding: var(--space-m);
+}
+
+@media (min-width: 480px) {
+  .wrapper {
+    max-width: 750px;
+    margin: var(--space-0) auto;
+  }
+}
+
+.textInput {
+  margin-right: var(--space-s);
+  appearance: none;
+  outline: 0;
+  border: var(--border-width-default) solid var(--gray-600);
+  border-radius: var(--border-radius-medium);
+  padding: var(--space-xs) var(--space-s);
+  background-color: var(--white);
+}
+
+.textInput:focus {
+  border-color: var(--gray-800);
+  box-shadow: var(--box-shadow-medium);
+}

@@ -1,0 +1,26 @@
+.wrapper {
+  padding: var(--space-xs) var(--space-m);
+  margin: var(space-0);
+  background-color: var(--white);
+}
+
+.selectedWrapper {
+  composes: wrapper;
+  background-color: var(--blue-300);
+}
+
+.headline {
+  margin-top: var(--space-s);
+  margin-bottom: var(--space-s);
+  font-size: var(--size-s);
+  line-height: var(--size-s);
+  color: var(--gray-700);
+}
+
+.details {
+  margin-top: var(--space-s);
+  margin-bottom: var(--space-s);
+  font-size: var(--size-xs);
+  line-height: var(--size-l);
+  color: var(--gray-600);
+}
