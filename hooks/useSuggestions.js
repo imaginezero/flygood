@@ -1,19 +1,19 @@
 import { useState } from 'react';
 
-const getSearchURL = (q, n) => {
+function getSearchURL(q, n) {
   const params = new URLSearchParams({ q });
   if (n) params.set('n', Number(n));
   return `/api/search?${params.toString()}`;
-};
+}
 
-const fetchSuggestions = (q, n) =>
-  fetch(getSearchURL(q, n)).then((response) =>
-    response.ok
-      ? response.json()
-      : Promise.reject(new Error(response.statusText))
-  );
+async function fetchSuggestions(q, n) {
+  const response = await fetch(getSearchURL(q, n));
+  return response.ok
+    ? response.json()
+    : Promise.reject(new Error(response.statusText));
+}
 
-export const useSuggestions = (delay) => {
+export function useSuggestions(delay) {
   const [suggestions, setSuggestions] = useState([]);
   const [timeoutID, setTimeoutID] = useState(null);
   const loadSuggestions = (q, n = 5) =>
@@ -24,4 +24,4 @@ export const useSuggestions = (delay) => {
       );
     }).then(setSuggestions, () => {});
   return { suggestions, loadSuggestions };
-};
+}
