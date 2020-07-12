@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { Markdown } from '../Markdown';
 import { AssociationMark, TypeMark, LogoMark } from '../Logo';
 
 import {
@@ -57,10 +58,10 @@ function Footer() {
 
 export default function Frame({ children }) {
   return (
-    <>
+    <Markdown>
       <Header />
       <Main>{children}</Main>
       <Footer />
-    </>
+    </Markdown>
   );
 }

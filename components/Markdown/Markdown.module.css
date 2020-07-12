@@ -1,0 +1,7 @@
+.paragraph:first-child {
+  margin-top: var(--space-0);
+}
+
+.paragraph:last-child {
+  margin-bottom: var(--space-0);
+}
