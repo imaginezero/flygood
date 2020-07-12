@@ -23,19 +23,19 @@ const COST_PER_KG_CO2E = 0.023;
 // https://carbonneutral.com.au/faqs/
 const TREES_PER_KG_CO2E = 0.015;
 
-const round = (number, digits = 2) => {
+function round(number, digits = 2) {
   const factor = Math.pow(10, digits);
   return Math.round((number + Number.EPSILON) * factor) / factor;
-};
+}
 
-const determineType = (distance) => {
+function determineType(distance) {
   if (distance >= LONG_HAUL_THRESHOLD) return LONG_HAUL_FLIGHT;
   if (distance >= SHORT_HAUL_THRESHOLD) return SHORT_HAUL_FLIGHT;
   return DOMESTIC_FLIGHT;
-};
+}
 
-const analyzeTrip = (airports, flightClass) =>
-  airports.reduce(
+function analyzeTrip(airports, flightClass) {
+  return airports.reduce(
     (results, current, index) => {
       const next = airports[index + 1];
       if (next) {
@@ -54,23 +54,43 @@ const analyzeTrip = (airports, flightClass) =>
     },
     { airports, distance: 0, co2e: 0, co2: 0, ch4: 0, n2o: 0, wtt: 0 }
   );
+}
 
-const evaluateTrip = ({ airports, distance, co2e, co2, ch4, n2o, wtt }) => {
-  const emissions = co2e + wtt;
+function evaluateTrip(
+  { airports, distance, co2e, co2, ch4, n2o, wtt },
+  factor
+) {
+  const emissions = (co2e + wtt) * factor;
   return {
     airports,
     distance: round(distance, 1),
     emissions: round(emissions, 1),
-    details: { co2: round(co2, 2), ch4: round(ch4, 2), n2o: round(n2o, 2) },
+    details: {
+      co2: round(co2 * factor, 2),
+      ch4: round(ch4 * factor, 2),
+      n2o: round(n2o * factor, 2),
+    },
     cost: round(emissions * COST_PER_KG_CO2E, 2),
     trees: Math.ceil(emissions * TREES_PER_KG_CO2E),
-    query: airports.map(({ iata }) => iata).join(','),
   };
-};
+}
 
-export const calculateTrip = (airports, flightClass = ECONOMY_CLASS) => {
-  if (!FLIGHT_CLASSES.includes(flightClass)) {
-    throw new Error('unknown flight class');
-  }
-  return evaluateTrip(analyzeTrip(airports, flightClass));
-};
+export const flightClasses = FLIGHT_CLASSES;
+export const defaultClass = ECONOMY_CLASS;
+
+export function calculateTrip({
+  airports = [],
+  passengers = 1,
+  roundTrip = false,
+  flightClass = defaultClass,
+}) {
+  return {
+    passengers,
+    roundTrip,
+    flightClass,
+    ...evaluateTrip(
+      analyzeTrip(airports, flightClass),
+      passengers * (roundTrip ? 2 : 1)
+    ),
+  };
+}

@@ -2,50 +2,104 @@ import {
   createElement,
   createContext,
   useContext,
-  useState,
   useEffect,
+  useState,
 } from 'react';
+import hoistNonReactStatics from 'hoist-non-react-statics';
 import { useRouter } from 'next/router';
 
-import { calculateTrip } from '../services/trip';
+import { calculateTrip, flightClasses, defaultClass } from '../services/trip';
+
+function buildQuery({
+  airports = [],
+  passengers = 1,
+  roundTrip = false,
+  flightClass = defaultClass,
+}) {
+  return {
+    a: airports.map(({ iata }) => iata).join(','),
+    p: String(passengers),
+    r: roundTrip ? '1' : '0',
+    c: flightClass,
+  };
+}
+
+function parseQuery({ a = '', p = '1', r = '0', c = defaultClass }) {
+  return {
+    airports: a.split(',').filter((i) => !!i),
+    passengers: parseInt(p, 10),
+    roundTrip: r === '1' ? true : false,
+    flightClass: c,
+  };
+}
 
 const TripContext = createContext(null);
 
-const getSearchURL = (q) => `/api/search?q=${encodeURIComponent(q)}`;
-
-const fetchTrip = (...codes) =>
-  fetch(
-    getSearchURL(codes.map((code) => `iata:${code}`).join(' '))
-  ).then((response) =>
-    response.ok
-      ? response.json()
-      : Promise.reject(new Error(response.statusText))
-  );
-
-export const withTrip = (Component) => (props) =>
-  createElement(
-    TripContext.Provider,
-    { value: useState(calculateTrip([])) },
-    createElement(Component, props)
-  );
-
-export const useTrip = () => {
-  const [trip, setTrip] = useContext(TripContext);
-  const [tripPromise, setTripPromise] = useState(null);
-  const updateTrip = (airports) => setTrip(calculateTrip(airports));
-  const loadTrip = (...codes) => {
-    setTripPromise(
-      fetchTrip(...codes).then((airports) => {
-        updateTrip(airports);
-        return airports;
-      })
+export function withTrip(Component) {
+  const WrappedComponent = (props) => {
+    const state = {};
+    const [trip, setTrip] = useState(state);
+    return createElement(
+      TripContext.Provider,
+      {
+        value: {
+          trip,
+          setTrip,
+          initializeTrip(trip) {
+            return Object.assign(state, trip);
+          },
+          get initializing() {
+            return Object.keys(state).length === 0;
+          },
+        },
+      },
+      createElement(Component, props)
     );
   };
-  const { query } = useRouter();
-  useEffect(() => {
-    if (!tripPromise && query.t && query.t !== trip.query) {
-      loadTrip(...query.t.split(','));
-    }
-  });
-  return { trip, tripPromise, updateTrip };
-};
+  hoistNonReactStatics(WrappedComponent, Component);
+  WrappedComponent.displayName = `WithTrip(${
+    Component.displayName || Component.name || 'Component'
+  })`;
+  return WrappedComponent;
+}
+
+export function withLoadedTrip(Component) {
+  const WrappedComponent = ({ trip, ...props }) => {
+    const { initializing, initializeTrip, setTrip } = useContext(TripContext);
+    if (initializing && trip) initializeTrip(trip);
+    useEffect(() => {
+      if (!initializing && trip) setTrip(trip);
+    }, [trip]);
+    return createElement(Component, props);
+  };
+  hoistNonReactStatics(WrappedComponent, Component);
+  WrappedComponent.displayName = `WithLoadedTrip(${
+    Component.displayName || Component.name || 'Component'
+  })`;
+  return WrappedComponent;
+}
+
+export function useTrip() {
+  const { push, pathname } = useRouter();
+  const { trip, setTrip } = useContext(TripContext);
+  function updateTrip(params) {
+    push({ pathname, query: buildQuery(params) }, { shallow: true });
+    setTrip(calculateTrip(params));
+  }
+  return { trip, updateTrip, flightClasses };
+}
+
+export async function loadTrip({ query }) {
+  if (typeof window === 'undefined') {
+    const { find } = await import('../services/search');
+    const { airports = [], ...params } = parseQuery(query);
+    return {
+      props: {
+        trip: calculateTrip({
+          airports: airports.map((iata) => ({ ...find(iata) })),
+          ...params,
+        }),
+      },
+    };
+  }
+}

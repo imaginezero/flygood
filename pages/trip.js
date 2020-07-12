@@ -1,5 +1,8 @@
 import {} from '../components';
+import { withLoadedTrip } from '../hooks';
 
-export default function Trip() {
+export default withLoadedTrip(function Trip() {
   return <></>;
-}
+});
+
+export { loadTrip as getServerSideProps } from '../hooks';
