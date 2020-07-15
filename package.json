@@ -26,7 +26,6 @@
     "@mdx-js/loader": "^1.6.1",
     "@mdx-js/react": "^1.6.6",
     "@next/mdx": "^9.3.6",
-    "@stripe/stripe-js": "^1.5.0",
     "@turf/distance": "^6.0.1",
     "browserslist": "^4",
     "downshift": "^5.4.6",
@@ -40,8 +39,7 @@
     "postcss-normalize": "^9.0.0",
     "postcss-preset-env": "^6.7.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "stripe": "^8.49.0"
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^9.0.1",
