@@ -14,5 +14,7 @@
   "yes": "Ja",
   "no": "Nein",
   "addStopover": "Zwischenstop hinzufügen",
-  "calculateEmissions": "Emissionen berechnen"
+  "calculateEmissions": "Emissionen berechnen",
+  "paymentHeadline": "Offsetting-Kosten",
+  "makeDonation": "Jetzt spenden"
 }
