@@ -1,11 +1,23 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import { useTranslation } from '../../hooks';
+
 import AirportFields from './AirportFields';
 import ClassSelect from './ClassSelect';
 import PassengerSelect from './PassengerSelect';
 import RoundtripSelect from './RoundtripSelect';
 
-import { dropdownWrapper, dropdown } from './TripForm.module.css';
+import {
+  dropdownWrapper,
+  dropdown,
+  buttonWrapper,
+  button,
+} from './TripForm.module.css';
 
 export default function TripForm() {
+  const { query } = useRouter();
+  const { t } = useTranslation();
   return (
     <>
       <AirportFields />
@@ -19,6 +31,11 @@ export default function TripForm() {
         <div className={dropdown}>
           <RoundtripSelect />
         </div>
+      </div>
+      <div className={buttonWrapper}>
+        <Link href={{ pathname: 'trip', query }}>
+          <a className={button}>{t('calculateEmissions')}</a>
+        </Link>
       </div>
     </>
   );

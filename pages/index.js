@@ -1,8 +1,15 @@
-import { TripForm } from '../components';
+import { Section, TripForm } from '../components';
 import { withLoadedTrip } from '../hooks';
 
 export default withLoadedTrip(function Home() {
-  return <TripForm />;
+  return (
+    <>
+      <Section>
+        <TripForm />
+      </Section>
+      <Section type="content" />
+    </>
+  );
 });
 
 export { loadTrip as getServerSideProps } from '../hooks';
