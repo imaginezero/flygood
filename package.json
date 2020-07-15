@@ -34,6 +34,7 @@
     "flat": "^5.0.0",
     "hoist-non-react-statics": "^3.3.2",
     "lunr": "^2.3.8",
+    "nanoid": "^3.1.10",
     "next": "^9.3.6",
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-normalize": "^9.0.0",

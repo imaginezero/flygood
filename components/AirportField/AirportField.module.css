@@ -1,5 +1,6 @@
 .wrapper {
-  position: relative;
+  /* position: relative; */
+  z-index: 0;
 }
 
 .input {
@@ -7,12 +8,14 @@
   display: block;
   width: 100%;
   max-width: 100%;
+  z-index: 0;
 }
 
 .menubox {
   position: absolute;
   width: 100%;
   padding: var(--space-0) var(--space-s);
+  z-index: 1000;
 }
 
 .menu {
@@ -25,4 +28,5 @@
   border-bottom-left-radius: var(--border-radius-medium);
   border-bottom-right-radius: var(--border-radius-medium);
   box-shadow: var(--box-shadow-light);
+  z-index: 1000;
 }

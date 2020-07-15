@@ -1,4 +1,17 @@
 {
   "lang": "de",
-  "locale": "de_DE"
+  "locale": "de_DE",
+  "flightClass": "Sitzklasse",
+  "roundTrip": "Mit Rückflug",
+  "passengers": "Passagiere",
+  "origin": "Abflughafen",
+  "destination": "Zielflughafen",
+  "stopover": "Zwischenstopp",
+  "economy": "Economy",
+  "premium": "Economy Premium",
+  "business": "Business",
+  "first": "First",
+  "yes": "Ja",
+  "no": "Nein",
+  "addStopover": "Zwischenstop hinzufügen"
 }
