@@ -83,7 +83,7 @@ export function useTrip() {
   const { push, pathname } = useRouter();
   const { trip, setTrip } = useContext(TripContext);
   function updateTrip(params) {
-    push({ pathname, query: buildQuery(params) }, { shallow: true });
+    push({ pathname, query: buildQuery(params) }, undefined, { shallow: true });
     setTrip(calculateTrip(params));
   }
   return { trip, updateTrip, flightClasses };

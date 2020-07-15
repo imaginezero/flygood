@@ -1,0 +1,52 @@
+.airportFieldsWrapper {
+  position: relative;
+  z-index: 0;
+}
+
+.airportFieldWrapper {
+  margin-top: var(--space-s);
+}
+.airportFieldWrapper:first-child {
+  margin-top: var(--space-0);
+}
+
+.dropdownWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--space-xl);
+}
+
+@media (min-width: 720px) {
+  .dropdownWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .dropdown {
+    flex: 1 0 160px;
+    margin-right: var(--space-m);
+  }
+
+  .dropdown:last-child {
+    margin-right: var(--space-0);
+  }
+}
+
+.addStopover {
+  position: absolute;
+  right: 0;
+  margin-top: calc(
+    -1 * calc(var(--space-xl) + var(--space-xs) + var(--space-xxs))
+  );
+  height: calc(var(--space-xl) + var(--space-xs) + var(--space-xxs));
+  width: var(--space-xl);
+  color: transparent;
+  overflow: hidden;
+  text-indent: -9999px;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221408%22%20height%3D%221408%22%3E%3Cpath%20d%3D%22M%201408%2C800%20V%20608%20q%200%2C-40%20-28%2C-68%20-28%2C-28%20-68%2C-28%20H%20896%20V%2096%20Q%20896%2C56%20868%2C28%20840%2C0%20800%2C0%20H%20608%20Q%20568%2C0%20540%2C28%20512%2C56%20512%2C96%20V%20512%20H%2096%20Q%2056%2C512%2028%2C540%200%2C568%200%2C608%20v%20192%20q%200%2C40%2028%2C68%2028%2C28%2068%2C28%20h%20416%20v%20416%20q%200%2C40%2028%2C68%2028%2C28%2068%2C28%20h%20192%20q%2040%2C0%2068%2C-28%2028%2C-28%2028%2C-68%20V%20896%20h%20416%20q%2040%2C0%2068%2C-28%2028%2C-28%2028%2C-68%20z%22%20fill%3D%22currentColor%22%20%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 0.7em top 50%;
+  background-size: 0.65em auto;
+  cursor: pointer;
+}

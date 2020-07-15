@@ -1,14 +1,25 @@
-import { useTrip } from '../../hooks';
+import AirportFields from './AirportFields';
+import ClassSelect from './ClassSelect';
+import PassengerSelect from './PassengerSelect';
+import RoundtripSelect from './RoundtripSelect';
 
-import { AirportField } from '../AirportField';
-import { Select } from '../Select';
+import { dropdownWrapper, dropdown } from './TripForm.module.css';
 
 export default function TripForm() {
-  const { trip } = useTrip();
   return (
     <>
-      <Select value={'foo'} options={{ foo: 'Foo', bar: 'Bar' }} />
-      <AirportField />
+      <AirportFields />
+      <div className={dropdownWrapper}>
+        <div className={dropdown}>
+          <ClassSelect />
+        </div>
+        <div className={dropdown}>
+          <PassengerSelect />
+        </div>
+        <div className={dropdown}>
+          <RoundtripSelect />
+        </div>
+      </div>
     </>
   );
 }

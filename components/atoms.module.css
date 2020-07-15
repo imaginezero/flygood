@@ -21,7 +21,6 @@
 }
 
 .input:hover {
-  border-color: var(--gray-800);
   box-shadow: var(--box-shadow-light);
 }
 
