@@ -28,9 +28,22 @@ const t = (key, data) => {
   }
 };
 
+const formatNumber = (number, decimalPlaces = 2) => {
+  const separator = translations['numberSeparator'];
+  const padding = Array(decimalPlaces).fill('0').join('');
+  return String(number).replace(
+    /^(\d+)(\.)?(\d*)?$/,
+    (match, wholeNumber, dot, decimalPart = '0') =>
+      `${wholeNumber}${separator}${`${decimalPart}${padding}`.substr(
+        0,
+        decimalPlaces
+      )}`
+  );
+};
+
 export function withTranslation(Component) {
   const WrappedComponent = (props) => {
-    return createElement(Component, { ...props, t });
+    return createElement(Component, { ...props, t, formatNumber });
   };
   hoistNonReactStatics(WrappedComponent, Component);
   WrappedComponent.displayName = `WithTranslation(${
@@ -40,5 +53,5 @@ export function withTranslation(Component) {
 }
 
 export function useTranslation() {
-  return { t };
+  return { t, formatNumber };
 }

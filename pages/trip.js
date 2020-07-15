@@ -1,4 +1,4 @@
-import { Section, Payment } from '../components';
+import { Section, Payment, EmissionData } from '../components';
 import { withLoadedTrip } from '../hooks';
 
 export default withLoadedTrip(function Trip() {
@@ -8,7 +8,9 @@ export default withLoadedTrip(function Trip() {
       <Section type="action">
         <Payment />
       </Section>
-      <Section type="content" />
+      <Section type="content">
+        <EmissionData />
+      </Section>
     </>
   );
 });

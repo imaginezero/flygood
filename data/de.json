@@ -1,8 +1,9 @@
 {
   "lang": "de",
   "locale": "de_DE",
+  "numberSeparator": ",",
   "flightClass": "Sitzklasse",
-  "roundTrip": "Mit Rückflug",
+  "roundTrip": "Rückflug",
   "passengers": "Passagiere",
   "origin": "Abflughafen",
   "destination": "Zielflughafen",
@@ -16,5 +17,11 @@
   "addStopover": "Zwischenstop hinzufügen",
   "calculateEmissions": "Emissionen berechnen",
   "paymentHeadline": "Offsetting-Kosten",
-  "makeDonation": "Jetzt spenden"
+  "makeDonation": "Jetzt spenden",
+  "distance": "Entfernung",
+  "emissions": "Emissionen",
+  "trees": "Baum-Äquivalent",
+  "co2": "Kohlendioxid",
+  "ch4": "Methan",
+  "n2o": "Lachgas"
 }
