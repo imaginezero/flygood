@@ -1,0 +1,25 @@
+.line {
+  display: flex;
+  align-items: baseline;
+  line-height: var(--space-l);
+}
+
+.label,
+.amount {
+  padding: 0;
+  margin: 0;
+}
+
+.amount {
+  font-weight: bold;
+  flex: 0 0 auto;
+}
+
+.divider {
+  flex: 1 1 var(--space-xl);
+  margin: var(--space-0) var(--space-s);
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: var(--size-xs);
+  color: var(--gray-600);
+}

@@ -1,0 +1,4 @@
+.lines {
+  margin: var(--space-s) var(--space-0);
+  font-size: var(--size-s);
+}
