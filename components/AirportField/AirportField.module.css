@@ -3,8 +3,10 @@
 }
 
 .input {
-  composes: textInput from '../atoms.module.css';
+  composes: input from '../atoms.module.css';
+  display: block;
   width: 100%;
+  max-width: 100%;
 }
 
 .menubox {

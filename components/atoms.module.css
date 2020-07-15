@@ -10,17 +10,24 @@
   }
 }
 
-.textInput {
-  margin-right: var(--space-s);
+.input {
   appearance: none;
   outline: 0;
   border: var(--border-width-default) solid var(--gray-600);
   border-radius: var(--border-radius-medium);
-  padding: var(--space-xs) var(--space-s);
+  padding: var(--space-s) var(--space-m);
+  line-height: var(--size-xl);
   background-color: var(--white);
 }
 
-.textInput:focus {
+.input:hover {
+  border-color: var(--gray-800);
+  box-shadow: var(--box-shadow-light);
+}
+
+.input:focus,
+.input:focus:hover {
   border-color: var(--gray-800);
   box-shadow: var(--box-shadow-medium);
+  outline: none;
 }

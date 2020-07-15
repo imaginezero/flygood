@@ -22,15 +22,13 @@ function AirportInput({
   getMenuProps,
   getItemProps,
   suggestions,
-  title,
+  label: labelText,
 }) {
   return (
     <div className={wrapper}>
-      {title ? (
-        <label {...getLabelProps()} className={label}>
-          {title}
-        </label>
-      ) : null}
+      <label {...getLabelProps()} className={label}>
+        {labelText}
+      </label>
       <div {...getComboboxProps()} className={combobox}>
         <input {...getInputProps()} className={input} />
       </div>
@@ -52,14 +50,14 @@ function AirportInput({
 }
 
 export default function AirportField({
-  airport,
+  value,
   onChange,
   label = 'Airport',
   id = 'airport',
 }) {
   const { suggestions, loadSuggestions } = useSuggestions(250);
   const props = useCombobox({
-    defaultSelectedItem: airport,
+    defaultSelectedItem: value,
     itemToString: (item) => (item ? `${item.city} (${item.iata})` : ''),
     onSelectedItemChange: ({ selectedItem }) => {
       setTimeout(() => onChange(selectedItem));
@@ -72,5 +70,5 @@ export default function AirportField({
     labelId: `${id}-label`,
     menuId: `${id}-menu`,
   });
-  return <AirportInput {...props} title={label} suggestions={suggestions} />;
+  return <AirportInput {...props} label={label} suggestions={suggestions} />;
 }

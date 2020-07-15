@@ -23,6 +23,7 @@
 
 .footerWrapper {
   composes: wrapper;
+  margin-top: var(--space-m);
 }
 
 .footerContainer {
