@@ -13,5 +13,6 @@
   "first": "First",
   "yes": "Ja",
   "no": "Nein",
-  "addStopover": "Zwischenstop hinzufügen"
+  "addStopover": "Zwischenstop hinzufügen",
+  "calculateEmissions": "Emissionen berechnen"
 }

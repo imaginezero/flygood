@@ -12,24 +12,29 @@
 
 .dropdownWrapper {
   display: flex;
-  flex-direction: column;
-  margin-top: var(--space-xl);
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: var(--space-l);
+  margin-right: calc(-1 * var(--space-m));
+}
+
+.dropdown {
+  flex: 1 1 240px;
+  margin-top: var(--space-s);
+  margin-right: var(--space-m);
+}
+
+.dropdown:first-child {
+  flex: 1 1 480px;
 }
 
 @media (min-width: 720px) {
   .dropdownWrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-wrap: nowrap;
   }
-
   .dropdown {
     flex: 1 0 160px;
-    margin-right: var(--space-m);
-  }
-
-  .dropdown:last-child {
-    margin-right: var(--space-0);
   }
 }
 
@@ -49,4 +54,16 @@
   background-position: right 0.7em top 50%;
   background-size: 0.65em auto;
   cursor: pointer;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  composes: button from '../atoms.module.css';
+  flex: 0 0 80%;
+  margin-top: calc(var(--space-xxxl) + var(--space-s));
+  margin-bottom: calc(var(--space-xxl) + var(--space-xxs));
 }

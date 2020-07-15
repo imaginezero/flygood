@@ -1,0 +1,24 @@
+.wrapper {
+  width: 100%;
+}
+
+.default {
+  composes: wrapper;
+  background-color: var(--blue-100);
+}
+
+.content {
+  composes: wrapper;
+  background-color: var(--blue-300);
+  border-top: var(--border-width-default) solid var(--gray-800);
+}
+
+.action {
+  composes: wrapper;
+  color: var(--white);
+  background-color: var(--gray-800);
+}
+
+.container {
+  composes: wrapper from '../atoms.module.css';
+}

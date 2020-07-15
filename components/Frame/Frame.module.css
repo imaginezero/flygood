@@ -17,13 +17,10 @@
   composes: wrapper;
 }
 
-.mainContainer {
-  composes: wrapper from '../atoms.module.css';
-}
-
 .footerWrapper {
   composes: wrapper;
   margin-top: var(--space-m);
+  padding-bottom: var(--space-l);
 }
 
 .footerContainer {

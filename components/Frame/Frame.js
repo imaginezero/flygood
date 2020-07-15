@@ -37,11 +37,7 @@ function Header() {
 }
 
 function Main({ children }) {
-  return (
-    <main className={mainWrapper}>
-      <div className={mainContainer}>{children}</div>
-    </main>
-  );
+  return <main className={mainWrapper}>{children}</main>;
 }
 
 function Footer() {
