@@ -13,6 +13,7 @@
   --blue-100: hsl(177, 51%, 93%);
   --blue-300: hsl(180, 50%, 82%);
   --yellow: hsl(49, 99%, 59%);
+  --gold: hsl(49, 99%, 23%);
 
   --space-0: 0;
   --space-xxs: 0.125rem;
@@ -57,6 +58,17 @@ html {
 body {
   color: var(--gray-800);
   background-color: var(--blue-100);
+}
+
+a {
+  text-decoration: none;
+  color: var(--gold);
+  transition: 0.125s;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--gold);
 }
 
 [aria-controls] {

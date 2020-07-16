@@ -1,11 +1,13 @@
-Our emission calculations are based on the emission factors published by the British [Department for Environment, Food & Rural Affairs](https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2017), or Defra for short.
+Unsere Datenbank enthält über **8000 Flughäfen** und ist [Open-Source](https://ourairports.com/data/). Anhand der Längen- und Breitengrade der Flughäfen berechnen wir mithilfe der [Haversine Formel](https://en.wikipedia.org/wiki/Haversine_formula) die Distanz.
 
-Our airport database contains 8,659 airports from all around the world. It is based on the open source [OurAirports](https://ourairports.com/data/) database. For each airport we know its latitude and longitude - using that information we can calculate the distance between any two airports using the [haversine formula](https://en.wikipedia.org/wiki/Haversine_formula).
+Unsere Heuristik zur **Emissionsberechnung** basiert auf den [Emissionsfaktoren](https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2017) des britischen Department for Environment, Food & Rural Affairs ("Defra").
 
-The total emissions factors that we use for flights include three "extras":
+Folgende Faktoren berücksichtigen wir unter anderem:
 
-- **Uplift** - this is an 8% increase in all of the factors to reflect the fact that airplanes cannot always fly an exact Great Circle route and often have to wait before landing - unlike a car you can't just switch the engines off whilst waiting so airplanes "stack" near the airport which, inevitably, uses more fuel.
-- **Radiative Forcing** - this is a 90% increase in all factors to take account of the fact that emissions high up in the atmosphere have a greater environmental impact than ground-level emissions. Defra recommends (from 2014 onwards) that everyone use factors in their calculations that include RF and we have chosen to do so to reflect the real environmental cost of flying.
-- **Well To Tank** - the emissions associated with the extraction, refining and transportation of the raw fuel prior to combustion. Defra supplies WTT data to accompany the base+RF emissions factors. We use WTT figures as they help to reflect the true carbon cost of an activity. Including WTT figures adds approximately 10% to the emissions figures.
+- **Uplift**: 8% Aufschlag auf Entfernung, da Flugzeuge nie die direkte Strecke fliegen. Oft ist es so, dass sie vor der Landung noch Warteschleifen drehen müssen, bis sie eine Landeerlaubnis bekommen. So entstehen zusätzliche Emissionen.
+- **Radiative Forcing**: 90% Aufschlag, weil beim Fliegen Emissionen in einer höheren Atmosphärenschicht ausgestoßen werden, wo sie einen stärkeren Effekt auf die Umwelt haben.
+- **Well-to-tank**: 10% Aufschlag für Produktion und Transport von Treibstoff von der Quelle über die Raffinerie in den Tank.
 
-One question that often comes up in relation to flying is the effect that class has on emissions. It comes down, simply, to the number of people on the flight. For example, flights that only carry Economy class passengers tend to pack them in like sardines and thus the overall environmental cost of the flight is shared between more people - hence a lower emissions factor. The Defra factors are based on typical aircraft passenger configurations for the given classes.
+Auch die **Sitzklasse** hat indirekt Einfluss auf die individuellen Emissionen. Es würden mehr Menschen in ein Flugzeug passen, wenn alle Economy Class fliegen würden. Somit würde die persönliche Emission sinken.
+
+Die Defra-Faktoren beziehen sich auf ein ein typisches Flugzeug mit jeweils durchschnittlicher Passagierbesatzung.
