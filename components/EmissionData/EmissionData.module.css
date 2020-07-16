@@ -5,6 +5,6 @@
 }
 
 .lines {
-  margin-bottom: var(--space-s);
+  margin-bottom: var(--space-xl);
   font-size: var(--size-s);
 }

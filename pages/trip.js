@@ -1,3 +1,5 @@
+import { Info } from '../content';
+
 import { Section, Itinerary, Payment, EmissionData } from '../components';
 import { withLoadedTrip } from '../hooks';
 
@@ -12,6 +14,7 @@ export default withLoadedTrip(function Trip() {
       </Section>
       <Section type="content">
         <EmissionData />
+        <Info />
       </Section>
     </>
   );

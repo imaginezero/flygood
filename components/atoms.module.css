@@ -39,14 +39,16 @@
   line-height: var(--size-xxl);
   background-color: var(--yellow);
   box-shadow: var(--box-shadow-light);
+  font-weight: bold;
   color: var(--gray-800);
   text-decoration: none;
-  font-weight: bold;
   text-align: center;
 }
 
 .button:hover {
   box-shadow: var(--box-shadow-medium);
+  color: var(--gray-800);
+  text-decoration: none;
 }
 
 .headline {
