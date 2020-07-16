@@ -6,10 +6,8 @@
 }
 
 .headline {
-  margin: var(--space-s) var(--space-0) var(--space-s);
-  line-height: 1em;
-  font-size: var(--size-l);
-  font-weight: bold;
+  composes: headline from '../atoms.module.css';
+  margin: var(--space-s) var(--space-0);
   color: var(--blue-100);
 }
 

@@ -1,10 +1,12 @@
-import { Section, Payment, EmissionData } from '../components';
+import { Section, Itinerary, Payment, EmissionData } from '../components';
 import { withLoadedTrip } from '../hooks';
 
 export default withLoadedTrip(function Trip() {
   return (
     <>
-      <Section></Section>
+      <Section>
+        <Itinerary />
+      </Section>
       <Section type="action">
         <Payment />
       </Section>
