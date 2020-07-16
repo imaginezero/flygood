@@ -48,3 +48,11 @@
 .button:hover {
   box-shadow: var(--box-shadow-medium);
 }
+
+.headline {
+  margin-top: var(--size-0);
+  line-height: 1em;
+  font-size: var(--size-l);
+  font-weight: bold;
+  color: var(--gray-700);
+}

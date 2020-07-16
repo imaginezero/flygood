@@ -1,4 +1,10 @@
+.headline {
+  composes: headline from '../atoms.module.css';
+  margin-top: var(--space-s);
+  margin-bottom: var(--space-m);
+}
+
 .lines {
-  margin: var(--space-s) var(--space-0);
+  margin-bottom: var(--space-s);
   font-size: var(--size-s);
 }

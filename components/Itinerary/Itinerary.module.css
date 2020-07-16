@@ -1,0 +1,14 @@
+.headline {
+  composes: headline from '../atoms.module.css';
+}
+
+.airportWrapper {
+  margin-bottom: var(--space-s);
+  border: var(--border-width-thin) solid var(--blue-300);
+}
+
+.lines {
+  margin-top: var(--space-m);
+  margin-bottom: var(--space-s);
+  font-size: var(--size-s);
+}

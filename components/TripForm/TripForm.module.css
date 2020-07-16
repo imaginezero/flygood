@@ -66,7 +66,7 @@
 
 .button {
   composes: button from '../atoms.module.css';
-  flex: 0 0 80%;
+  flex: 0 0 auto;
   margin-top: calc(var(--space-xxxl) + var(--space-s));
   margin-bottom: calc(var(--space-xxl) + var(--space-xxs));
 }
