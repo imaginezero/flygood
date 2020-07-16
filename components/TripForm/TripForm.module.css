@@ -20,13 +20,13 @@
 }
 
 .dropdown {
-  flex: 1 1 240px;
+  flex: 1 1 120px;
   margin-top: var(--space-s);
   margin-right: var(--space-m);
 }
 
 .dropdown:first-child {
-  flex: 1 1 480px;
+  flex: 1 1 720px;
 }
 
 @media (min-width: 720px) {
@@ -34,7 +34,10 @@
     flex-wrap: nowrap;
   }
   .dropdown {
-    flex: 1 0 160px;
+    flex: 1 0 120px;
+  }
+  .dropdown:first-child {
+    flex: 1 0 360px;
   }
 }
 
