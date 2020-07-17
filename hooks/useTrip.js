@@ -36,41 +36,21 @@ function parseQuery({ a = '', p = '1', r = '0', c = defaultClass }) {
 const TripContext = createContext(null);
 
 export function withTrip(Component) {
-  const WrappedComponent = (props) => {
-    const state = {};
-    const [trip, setTrip] = useState(state);
+  const WrappedComponent = ({ trip: loadedTrip, ...props }) => {
+    const [trip, setTrip] = useState(loadedTrip);
+    useEffect(() => {
+      if (trip !== loadedTrip) setTrip(loadedTrip);
+    }, [loadedTrip]);
     return createElement(
       TripContext.Provider,
       {
         value: {
           trip,
           setTrip,
-          initializeTrip(trip) {
-            return Object.assign(state, trip);
-          },
-          get initializing() {
-            return Object.keys(state).length === 0;
-          },
         },
       },
       createElement(Component, props)
     );
-  };
-  hoistNonReactStatics(WrappedComponent, Component);
-  WrappedComponent.displayName = `WithTrip(${
-    Component.displayName || Component.name || 'Component'
-  })`;
-  return WrappedComponent;
-}
-
-export function withLoadedTrip(Component) {
-  const WrappedComponent = ({ trip, ...props }) => {
-    const { initializing, initializeTrip, setTrip } = useContext(TripContext);
-    if (initializing && trip) initializeTrip(trip);
-    useEffect(() => {
-      if (!initializing && trip) setTrip(trip);
-    }, [trip]);
-    return createElement(Component, props);
   };
   hoistNonReactStatics(WrappedComponent, Component);
   WrappedComponent.displayName = `WithLoadedTrip(${

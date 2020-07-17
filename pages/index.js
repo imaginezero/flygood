@@ -1,9 +1,9 @@
 import { Section, TripForm } from '../components';
-import { withLoadedTrip } from '../hooks';
+import { withTrip } from '../hooks';
 
 import { About } from '../content';
 
-export default withLoadedTrip(function Home() {
+export default withTrip(function Home() {
   return (
     <>
       <Section>

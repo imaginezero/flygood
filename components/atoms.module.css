@@ -43,12 +43,20 @@
   color: var(--gray-800);
   text-decoration: none;
   text-align: center;
+  transition: 125ms;
 }
 
 .button:hover {
   box-shadow: var(--box-shadow-medium);
   color: var(--gray-800);
   text-decoration: none;
+}
+
+.disabledButton {
+  composes: button;
+  background-color: var(--gray-100);
+  color: var(--gray-600);
+  cursor: not-allowed;
 }
 
 .headline {

@@ -57,7 +57,7 @@ export default function AirportField({
 }) {
   const { suggestions, loadSuggestions } = useSuggestions(250);
   const props = useCombobox({
-    defaultSelectedItem: value,
+    selectedItem: value,
     itemToString: (item) => (item ? `${item.city} (${item.iata})` : ''),
     onSelectedItemChange: ({ selectedItem }) => onChange(selectedItem),
     onInputValueChange: ({ inputValue, isOpen }) => {

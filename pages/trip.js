@@ -1,9 +1,9 @@
 import { Info } from '../content';
 
 import { Section, Itinerary, Payment, EmissionData } from '../components';
-import { withLoadedTrip } from '../hooks';
+import { withTrip } from '../hooks';
 
-export default withLoadedTrip(function Trip() {
+export default withTrip(function Trip() {
   return (
     <>
       <Section>

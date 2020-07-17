@@ -1,11 +1,10 @@
 import Head from 'next/head';
 
-import { withTrip } from '../hooks';
 import { Frame } from '../components';
 
 import './global.css';
 
-export default withTrip(function FlygoodApp({ Component, pageProps }) {
+export default function FlygoodApp({ Component, pageProps }) {
   return (
     <Frame>
       <Head>
@@ -14,4 +13,4 @@ export default withTrip(function FlygoodApp({ Component, pageProps }) {
       <Component {...pageProps} />
     </Frame>
   );
-});
+}

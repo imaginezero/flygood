@@ -7,7 +7,6 @@ import {
   headerWrapper,
   headerContainer,
   mainWrapper,
-  mainContainer,
   footerWrapper,
   footerContainer,
   logo,

@@ -70,3 +70,8 @@
   margin-top: calc(var(--space-xxxl) + var(--space-s));
   margin-bottom: calc(var(--space-xxl) + var(--space-xxs));
 }
+
+.disabledButton {
+  composes: disabledButton from '../atoms.module.css';
+  composes: button;
+}

@@ -7,10 +7,11 @@ export default withTranslation(
     static async getInitialProps(ctx) {
       const initialProps = await Document.getInitialProps(ctx);
       const trackingId = process.env.GA_MEASUREMENT_ID;
-      return { ...initialProps, trackingId };
+      const mapboxToken = process.env.MAPBOX_TOKEN;
+      return { ...initialProps, trackingId, mapboxToken };
     }
     render() {
-      const { trackingId, t } = this.props;
+      const { trackingId, mapboxToken, t } = this.props;
       return (
         <Html>
           <Head lang={t('lang')}>
@@ -41,6 +42,10 @@ export default withTranslation(
               color="#7da7a5"
             />
             <link rel="manifest" href="/site.webmanifest" />
+            {/* <link
+              href="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css"
+              rel="stylesheet"
+            /> */}
             <meta name="msapplication-TileColor" content="#e5f6f5" />
             <meta name="theme-color" content="#e5f6f5" />
             <meta name="robots" content="index, follow" />
@@ -52,6 +57,13 @@ export default withTranslation(
               <script
                 dangerouslySetInnerHTML={{
                   __html: `window.gaId = "${trackingId}";window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());`,
+                }}
+              />
+            ) : null}
+            {mapboxToken ? (
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `window.mapboxToken="${mapboxToken}";`,
                 }}
               />
             ) : null}
