@@ -31,7 +31,10 @@
   outline: none;
 }
 
-.button {
+.button,
+.button:hover,
+.button:active,
+.button:visited {
   appearance: none;
   outline: 0;
   border-radius: var(--border-radius-pill);
@@ -44,18 +47,22 @@
   text-decoration: none;
   text-align: center;
   transition: 125ms;
+  cursor: default;
 }
 
 .button:hover {
   box-shadow: var(--box-shadow-medium);
-  color: var(--gray-800);
   text-decoration: none;
 }
 
 .disabledButton {
   composes: button;
-  background-color: var(--gray-100);
-  color: var(--gray-600);
+  cursor: not-allowed;
+}
+
+.disabledButton:hover,
+.disabledButton:active,
+.disabledButton:visited {
   cursor: not-allowed;
 }
 

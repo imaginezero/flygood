@@ -2,6 +2,14 @@
   composes: headline from '../atoms.module.css';
 }
 
+.formlink,
+.formlink:hover,
+.formlink:active,
+.formlink:visited {
+  color: var(--gray-800);
+  text-decoration: none;
+}
+
 .airportWrapper {
   margin-bottom: var(--space-s);
   border: var(--border-width-thin) solid var(--blue-300);

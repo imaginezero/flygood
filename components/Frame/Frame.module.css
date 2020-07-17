@@ -32,6 +32,7 @@
 
 .logo,
 .logo:hover,
+.logo:active,
 .logo:visited {
   display: block;
   flex-grow: 0;
