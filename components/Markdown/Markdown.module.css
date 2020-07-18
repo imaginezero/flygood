@@ -3,6 +3,21 @@
   font-size: var(--size-s);
 }
 
+.h1 {
+  composes: headline from '../atoms.module.css';
+  font-size: var(--size-xl);
+}
+
+.h2 {
+  composes: headline from '../atoms.module.css';
+  font-size: var(--size-l);
+}
+
+.h3 {
+  composes: headline from '../atoms.module.css';
+  font-size: var(--size-m);
+}
+
 .paragraph:first-child {
   margin-top: var(--space-0);
 }

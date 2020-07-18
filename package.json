@@ -28,6 +28,7 @@
     "@next/mdx": "^9.3.6",
     "@turf/distance": "^6.0.1",
     "browserslist": "^4",
+    "cookie": "^0.4.1",
     "downshift": "^5.4.6",
     "escape-html": "^1.0.3",
     "flat": "^5.0.0",
@@ -40,7 +41,8 @@
     "postcss-normalize": "^9.0.0",
     "postcss-preset-env": "^6.7.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "snakecase-keys": "^3.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^9.0.1",

@@ -1,0 +1,11 @@
+.logo {
+  display: block;
+  height: var(--space-xxxl);
+  margin: var(--space-0) auto var(--space-l);
+}
+
+.button {
+  composes: button from '../atoms.module.css';
+  display: block;
+  margin: var(--space-xl) auto var(--space-0);
+}

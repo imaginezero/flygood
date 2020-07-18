@@ -1,4 +1,4 @@
-import { Info } from '../content';
+import Info from '../contents/info.md';
 
 import { Section, Itinerary, Payment, EmissionData } from '../components';
 import { withTrip } from '../hooks';

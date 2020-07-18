@@ -1,10 +1,11 @@
 import Head from 'next/head';
 
-import { Frame } from '../components';
+import { withTracking } from '../hooks';
+import { Frame, CookieConsent } from '../components';
 
 import './global.css';
 
-export default function FlygoodApp({ Component, pageProps }) {
+export default withTracking(function FlygoodApp({ Component, pageProps }) {
   return (
     <Frame>
       <Head>
@@ -13,4 +14,8 @@ export default function FlygoodApp({ Component, pageProps }) {
       <Component {...pageProps} />
     </Frame>
   );
+}, CookieConsent);
+
+export function reportWebVitals(params) {
+  withTracking.trackVitals(params);
 }

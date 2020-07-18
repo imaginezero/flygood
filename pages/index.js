@@ -1,7 +1,7 @@
 import { Section, TripForm } from '../components';
 import { withTrip } from '../hooks';
 
-import { About } from '../content';
+import About from '../contents/about.md';
 
 export default withTrip(function Home() {
   return (
