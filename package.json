@@ -1,7 +1,7 @@
 {
   "name": "flygood",
   "version": "0.0.1",
-  "description": "A mobile web app that allows offsetting flights and tipping initiatives",
+  "description": "A mobile web app that allows offsetting flights and tipping climate initiatives",
   "main": "index.js",
   "scripts": {
     "develop": "next",
