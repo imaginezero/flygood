@@ -57,14 +57,14 @@
 
 .disabledButton {
   composes: button;
-  opacity: 0.75;
+  background-color: var(--gray-200);
   cursor: not-allowed;
 }
 
 .disabledButton:hover,
 .disabledButton:active,
 .disabledButton:visited {
-  opacity: 0.75;
+  background-color: var(--gray-200);
   cursor: not-allowed;
 }
 
