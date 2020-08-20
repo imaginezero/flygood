@@ -17,7 +17,11 @@ import {
 
 // cost of planting trees, 23€ per ton of carbon dioxide
 // https://www.atmosfair.de/en/offset/fix
-const COST_PER_KG_CO2E = 0.023;
+// const COST_PER_KG_CO2E = 0.023;
+
+// cost of planting trees, 0.33333€ per tree
+// https://ecosystemrestorationcamps.org/make-a-donation/
+const COST_PER_TREE = 0.33333;
 
 // trees needed for carbon sequestration, ~67kg/tree in 30 years
 // https://carbonneutral.com.au/faqs/
@@ -61,6 +65,7 @@ function evaluateTrip(
   factor
 ) {
   const emissions = (co2e + wtt) * factor;
+  const trees = Math.ceil(emissions * TREES_PER_KG_CO2E);
   return {
     airports,
     distance: round(distance, 1),
@@ -70,8 +75,8 @@ function evaluateTrip(
       ch4: round(ch4 * factor, 2),
       n2o: round(n2o * factor, 2),
     },
-    cost: round(emissions * COST_PER_KG_CO2E, 2),
-    trees: Math.ceil(emissions * TREES_PER_KG_CO2E),
+    cost: round(trees * COST_PER_TREE, 2),
+    trees,
   };
 }
 

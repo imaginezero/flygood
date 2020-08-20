@@ -1,21 +1,28 @@
-import { select } from './Select.module.css';
+import { bright, dark, hiddenLabel } from './Select.module.css';
 
 export default function Select({
-  options,
+  options = {},
   value,
   onChange,
   label = 'Select',
   id = 'select',
+  invert = false,
+  hideLabel = false,
   className,
   ...props
 }) {
   const handleChange = (event) => onChange(event.target.value);
-  const classNames = className ? `${select} ${className}` : select;
+  const baseClassName = invert ? dark : bright;
+  const classNames = className
+    ? `${baseClassName} ${className}`
+    : baseClassName;
   const labelId = `${id}-label`;
   const selectId = `${id}-select`;
   return (
     <>
-      <label htmlFor={selectId}>{label}</label>
+      <label htmlFor={selectId} className={hideLabel ? hiddenLabel : undefined}>
+        {label}
+      </label>
       <select
         id={selectId}
         value={value}

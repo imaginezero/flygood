@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { withTracking } from '../hooks';
 import { Frame, CookieConsent } from '../components';
 
-import './global.css';
+import '../components/global.css';
 
 export default withTracking(function FlygoodApp({ Component, pageProps }) {
   return (
