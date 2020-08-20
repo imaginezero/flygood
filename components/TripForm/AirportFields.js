@@ -9,6 +9,8 @@ import {
   airportFieldsWrapper,
   airportFieldWrapper,
   addStopover,
+  removeStopover,
+  disabledRemoveStopover,
 } from './TripForm.module.css';
 
 function useAirports() {
@@ -50,6 +52,11 @@ function useAirports() {
       nextAirports.splice(findAirportIndex(id) + 1, 0, [nanoid(), null]);
       setAirports(nextAirports);
     },
+    removeAirport(id) {
+      const nextAirports = [...airports];
+      nextAirports.splice(findAirportIndex(id), 1);
+      setAirports(nextAirports);
+    },
     updateAirport(id, airport) {
       const nextAirports = [...airports];
       nextAirports.splice(findAirportIndex(id), 1, [id, airport]);
@@ -60,7 +67,8 @@ function useAirports() {
 
 export default function AirportFields() {
   const { t } = useTranslation();
-  const { airports, addAirport, updateAirport } = useAirports();
+  const { airports, addAirport, removeAirport, updateAirport } = useAirports();
+  const isShrinkable = airports.length > 2;
   return (
     <div className={airportFieldsWrapper}>
       {airports.map(([id, airport], index) => {
@@ -83,8 +91,19 @@ export default function AirportFields() {
                 event.preventDefault();
                 addAirport(id);
               }}
+              title={t('addStopover')}
             >
               {t('addStopover')}
+            </a>
+            <a
+              className={isShrinkable ? removeStopover : disabledRemoveStopover}
+              onClick={(event) => {
+                event.preventDefault();
+                isShrinkable && removeAirport(id);
+              }}
+              title={t('removeStopover')}
+            >
+              {t('removeStopover')}
             </a>
           </div>
         );

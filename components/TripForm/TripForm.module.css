@@ -41,22 +41,40 @@
   }
 }
 
-.addStopover {
+.stopoverIcon {
   position: absolute;
-  right: 0;
   margin-top: calc(
     -1 * calc(var(--space-xl) + var(--space-xs) + var(--space-xxs))
   );
   height: calc(var(--space-xl) + var(--space-xs) + var(--space-xxs));
-  width: var(--space-xl);
+  width: var(--space-l);
   color: transparent;
   overflow: hidden;
   text-indent: -9999px;
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221408%22%20height%3D%221408%22%3E%3Cpath%20d%3D%22M%201408%2C800%20V%20608%20q%200%2C-40%20-28%2C-68%20-28%2C-28%20-68%2C-28%20H%20896%20V%2096%20Q%20896%2C56%20868%2C28%20840%2C0%20800%2C0%20H%20608%20Q%20568%2C0%20540%2C28%20512%2C56%20512%2C96%20V%20512%20H%2096%20Q%2056%2C512%2028%2C540%200%2C568%200%2C608%20v%20192%20q%200%2C40%2028%2C68%2028%2C28%2068%2C28%20h%20416%20v%20416%20q%200%2C40%2028%2C68%2028%2C28%2068%2C28%20h%20192%20q%2040%2C0%2068%2C-28%2028%2C-28%2028%2C-68%20V%20896%20h%20416%20q%2040%2C0%2068%2C-28%2028%2C-28%2028%2C-68%20z%22%20fill%3D%22currentColor%22%20%2F%3E%3C%2Fsvg%3E');
   background-repeat: no-repeat;
   background-position: right 0.7em top 50%;
   background-size: 0.65em auto;
   cursor: pointer;
+}
+
+.addStopover {
+  composes: stopoverIcon;
+  right: var(--space-l);
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221408%22%20height%3D%221408%22%3E%3Cpath%20d%3D%22M%201408%2C800%20V%20608%20q%200%2C-40%20-28%2C-68%20-28%2C-28%20-68%2C-28%20H%20896%20V%2096%20Q%20896%2C56%20868%2C28%20840%2C0%20800%2C0%20H%20608%20Q%20568%2C0%20540%2C28%20512%2C56%20512%2C96%20V%20512%20H%2096%20Q%2056%2C512%2028%2C540%200%2C568%200%2C608%20v%20192%20q%200%2C40%2028%2C68%2028%2C28%2068%2C28%20h%20416%20v%20416%20q%200%2C40%2028%2C68%2028%2C28%2068%2C28%20h%20192%20q%2040%2C0%2068%2C-28%2028%2C-28%2028%2C-68%20V%20896%20h%20416%20q%2040%2C0%2068%2C-28%2028%2C-28%2028%2C-68%20z%22%20fill%3D%22currentColor%22%20%2F%3E%3C%2Fsvg%3E');
+  background-size: 0.65em auto;
+}
+
+.removeStopover {
+  composes: stopoverIcon;
+  right: var(--space-0);
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20viewBox%3D%220%20-256%201792%201792%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m1590.237%20530.983v192q0%2040-28%2068-28%2028-68%2028h-1216q-40%200-68-28-28-28-28-68v-192q0-40%2028-68%2028-28%2068-28h1216q40%200%2068%2028%2028%2028%2028%2068z%22%20fill%3D%22currentColor%22%20%2F%3E%3C%2Fsvg%3E');
+  background-size: 0.75em auto;
+}
+
+.disabledRemoveStopover {
+  composes: removeStopover;
+  opacity: 0.33;
+  cursor: not-allowed;
 }
 
 .buttonWrapper {
