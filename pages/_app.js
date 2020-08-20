@@ -16,6 +16,6 @@ export default withTracking(function FlygoodApp({ Component, pageProps }) {
   );
 }, CookieConsent);
 
-export function reportWebVitals(params) {
-  withTracking.trackVitals(params);
-}
+// export function reportWebVitals(params) {
+//   withTracking.trackVitals(params);
+// }
