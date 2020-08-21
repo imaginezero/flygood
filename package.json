@@ -29,7 +29,7 @@
     "@turf/distance": "^6.0.1",
     "browserslist": "^4.14.0",
     "cookie": "^0.4.1",
-    "downshift": "^5.4.6",
+    "downshift": "^6.0.5",
     "escape-html": "^1.0.3",
     "flat": "^5.0.2",
     "hoist-non-react-statics": "^3.3.2",
