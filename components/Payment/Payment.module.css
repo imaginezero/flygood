@@ -22,6 +22,7 @@
 .select,
 .select:not([multiple]):not([size]) {
   width: unset;
+  margin: var(--space-s) var(--space-0) var(--space-0);
 }
 
 .button {
