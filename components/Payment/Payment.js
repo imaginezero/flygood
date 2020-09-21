@@ -23,7 +23,7 @@ function usePayment() {
     const language = t('lang');
     switch (recipient) {
       case 'trees':
-        return `https://donorbox.org/camp-contour-lines-tree-crowdfunder?amount=${amount}&language=${language}`;
+        return `https://donorbox.org/trees-for-lure?amount=${amount}&language=${language}`;
       case 'greenpeace':
         return `https://www.greenpeace.de/spenden?betrag=${amount}`;
       default:
