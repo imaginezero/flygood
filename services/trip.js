@@ -19,9 +19,9 @@ import {
 // https://www.atmosfair.de/en/offset/fix
 // const COST_PER_KG_CO2E = 0.023;
 
-// cost of planting trees, 0.33333€ per tree
-// https://ecosystemrestorationcamps.org/make-a-donation/
-const COST_PER_TREE = 0.33333;
+// cost of planting trees, 2.0€ per tree
+// https://treesforlure.org/en/#project
+const COST_PER_TREE = 2.0;
 
 // trees needed for carbon sequestration, ~67kg/tree in 30 years
 // https://carbonneutral.com.au/faqs/
