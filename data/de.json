@@ -23,7 +23,7 @@
   "passengers": "Passagiere",
   "paymentHeadline": "Offsetting-Kosten",
   "paymentName": "CO2-Kompensation",
-  "paymentDescription": "Reise über {{ airports }}",
+  "paymentDescription": "Flugreise mit diesen Stationen: {{ airports }}",
   "premium": "Economy Premium",
   "removeStopover": "Zwischenstop entfernen",
   "roundTrip": "Rückflug",
