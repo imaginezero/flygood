@@ -1,16 +1,16 @@
 import Info from '../contents/info.md';
 
-import { Section, Itinerary, Payment, EmissionData } from '../components';
-import { withTrip } from '../hooks';
+import { Section, Itinerary, ThankYou, EmissionData } from '../components';
+import { withTrip } from '../hooks';	
 
-export default withTrip(function Trip() {
+export default withTrip(function Success() {	
   return (
     <>
       <Section>
-        <Itinerary linkToEdit={true} />
+        <Itinerary linkToEdit={false} />
       </Section>
       <Section type="action">
-        <Payment />
+        <ThankYou />
       </Section>
       <Section type="content">
         <EmissionData />
@@ -18,6 +18,6 @@ export default withTrip(function Trip() {
       </Section>
     </>
   );
-});
+});	
 
 export { loadTrip as getServerSideProps } from '../hooks';

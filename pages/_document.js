@@ -6,12 +6,13 @@ export default withTranslation(
   class FlygoodDocument extends Document {
     static async getInitialProps(ctx) {
       const initialProps = await Document.getInitialProps(ctx);
+      const stripeApiKey = process.env.STRIPE_PUBLIC_KEY;
       const trackingId = process.env.GA_MEASUREMENT_ID;
       const mapboxToken = process.env.MAPBOX_TOKEN;
-      return { ...initialProps, trackingId, mapboxToken };
+      return { ...initialProps, trackingId, stripeApiKey, mapboxToken };
     }
     render() {
-      const { trackingId, mapboxToken, t } = this.props;
+      const { stripeApiKey, trackingId, mapboxToken, t } = this.props;
       return (
         <Html>
           <Head lang={t('lang')}>
@@ -49,6 +50,13 @@ export default withTranslation(
           <body>
             <Main />
             <NextScript />
+            {stripeApiKey ? (	
+              <script	
+                dangerouslySetInnerHTML={{	
+                  __html: `window.stripeKey = "${stripeApiKey}";`,	
+                }}	
+              />	
+            ) : null}
             {trackingId ? (
               <script
                 dangerouslySetInnerHTML={{

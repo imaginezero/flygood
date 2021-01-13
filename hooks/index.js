@@ -1,3 +1,4 @@
+export { usePayment } from './usePayment';
 export { useSuggestions } from './useSuggestions';
 export { useTracking, withTracking } from './useTracking';
 export { useTranslation, withTranslation } from './useTranslation';
