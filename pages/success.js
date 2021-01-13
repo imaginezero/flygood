@@ -7,7 +7,7 @@ export default withTrip(function Success() {
   return (
     <>
       <Section>
-        <Itinerary clickToEdit={false} />
+        <Itinerary linkToEdit={false} />
       </Section>
       <Section type="action">
         <ThankYou />

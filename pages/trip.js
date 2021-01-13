@@ -7,7 +7,7 @@ export default withTrip(function Trip() {
   return (
     <>
       <Section>
-        <Itinerary clickToEdit={true} />
+        <Itinerary linkToEdit={true} />
       </Section>
       <Section type="action">
         <Payment />

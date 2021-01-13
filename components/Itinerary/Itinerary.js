@@ -13,7 +13,7 @@ import {
   lines,
 } from './Itinerary.module.css';
 
-export default function Itinerary({clickToEdit}) {
+export default function Itinerary({linkToEdit}) {
   const { query } = useRouter();
   const { t, formatNumber } = useTranslation();
   const {
@@ -38,7 +38,7 @@ export default function Itinerary({clickToEdit}) {
   return (
     <>
       <h3 className={headline}>{t('itinerary')}</h3>
-      {clickToEdit
+      {linkToEdit
       ?
       <>
         {airports.map((airport, index) => (
