@@ -8,7 +8,6 @@ import {
   wrapper,
   headline,
   amount,
-  select,
   button,
 } from './Payment.module.css';
 
@@ -19,6 +18,7 @@ export default function Payment() {
     trip: { cost },
   } = useTrip();
   const { process } = usePayment();
+
   return (
     <div className={wrapper}>
       <h3 className={headline}>{t('paymentHeadline')}</h3>
