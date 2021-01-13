@@ -23,7 +23,7 @@ export default function Payment() {
     <div className={wrapper}>
       <h3 className={headline}>{t('paymentHeadline')}</h3>
       <p className={amount}>{formatNumber(cost, 2)} €</p>
-      <button className={button} onClick={()=> process(cost, 1)}>
+      <button className={button} onClick={()=> process(cost)}>
         {t('makeDonation')}
       </button>
     </div>

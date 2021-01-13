@@ -27,12 +27,12 @@ export default function Itinerary({linkToEdit}) {
 
   const stats =
     <Lines
+      className={lines}
       items={{
         [t('distance')]: `${formatNumber(distance, 1)} km`,
         [t('passengers')]: passengers,
         [t('flightClass')]: t(flightClass),
       }}
-      className={lines}
     />;
 
   return (
