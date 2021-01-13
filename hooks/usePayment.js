@@ -1,24 +1,23 @@
 import { useState } from 'react';	
 
-function getPaymentURL(e = 1, n) {	
-  const params = new URLSearchParams({ e: Number(e) });	
-  if (n) params.set('n', Number(n));	
+function getPaymentURL(amount) {	
+  const params = new URLSearchParams({ amount: Number(amount) });	
   return `/api/payment?${params.toString()}`;	
 }	
 
-async function fetchPaymentSession(e, n) {	
-  const response = await fetch(getPaymentURL(e, n));	
+async function fetchPaymentSession(amount) {	
+  const response = await fetch(getPaymentURL(amount));	
   return response.ok	
     ? response.json()	
     : Promise.reject(new Error(response.statusText));	
 }	
 
-async function processPayment(e, n) {	
+async function processPayment(amount) {	
   try {	
     const { loadStripe } = await import('@stripe/stripe-js');	
     const [stripe, { sessionId }] = await Promise.all([	
       loadStripe(window.stripeKey),	
-      fetchPaymentSession(e, n),	
+      fetchPaymentSession(amount),	
     ]);	
     stripe.redirectToCheckout({ sessionId });	
   } catch (error) {	
@@ -28,10 +27,10 @@ async function processPayment(e, n) {
 
 export function usePayment() {	
   const [processing, setProcessing] = useState(false);	
-  const process = (e, n) => {	
+  const process = (amount) => {	
     if (processing) return;	
     setProcessing(true);	
-    processPayment(e, n);	
+    processPayment(amount);	
   };	
   return { processing, process };	
 }

@@ -19,7 +19,7 @@ const getDescription = (referer) => {
 
 export default async (req, res) => {
   const { t } = useTranslation();
-  const { e = 1, n = 1 } = req.query;	
+  const { amount } = req.query;	
   const { referer } = req.headers;	
   const { id: sessionId } = await stripe.checkout.sessions.create({	
     submit_type: 'donate',	
@@ -28,9 +28,9 @@ export default async (req, res) => {
       {	
         name: t('paymentName'),	
         description: getDescription(referer),	
-        amount: e * 100,	
-        currency: 'eur',	
-        quantity: n,	
+        amount: amount * 100,
+        currency: 'eur',
+        quantity: 1,
       },	
     ],	
     success_url: getSuccessUrl(referer),	
