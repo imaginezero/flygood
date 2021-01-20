@@ -1,6 +1,6 @@
 import Stripe from 'stripe';	
 
-import { useTranslation } from '../../hooks';
+import { usePaymentTranslations, useTranslation } from '../../hooks';
 
 const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);	
 
@@ -10,16 +10,20 @@ const getSuccessUrl = (referer) => {
   return url.toString();	
 };	
 
-const getDescription = (referer) => {	
+const getDescription = (referer, recipient) => {	
   const { t } = useTranslation();
   const url = new URL(referer);	
   const trip = url.searchParams.get('a') || '';	
-  return t('paymentDescription').replace('{{ airports }}', trip.split(',').join(', '));	
+  
+  return t('paymentDescription')
+    .replace('{{ airports }}', trip.split(',').join(', '))
+    .replace('{{ recipient }}', recipient);	
 };	
 
 export default async (req, res) => {
   const { t } = useTranslation();
-  const { amount } = req.query;	
+  const { recipients } = usePaymentTranslations();
+  const { amount, recipient } = req.query;
   const { referer } = req.headers;	
   const { id: sessionId } = await stripe.checkout.sessions.create({	
     submit_type: 'donate',	
@@ -27,7 +31,7 @@ export default async (req, res) => {
     line_items: [	
       {	
         name: t('paymentName'),	
-        description: getDescription(referer),	
+        description: getDescription(referer, recipients[recipient.replace(/[^a-z]+/gi, '')]),	
         amount: amount * 100,
         currency: 'eur',
         quantity: 1,
