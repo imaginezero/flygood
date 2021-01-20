@@ -10,6 +10,7 @@ import {
   wrapper,
   headline,
   amount,
+  select,
   button,
 } from './Payment.module.css';
 
@@ -37,7 +38,7 @@ export default function Payment() {
         onChange={newValue => recipient = newValue}
         invert={true}
         hideLabel={true}
-        // className={select}
+        className={select}
         label={t('chooseOrganization')}
       />
       <button className={button} onClick={()=> process(cost, recipient)}>
