@@ -27,7 +27,7 @@
     "@mdx-js/react": "^1.6.16",
     "@next/mdx": "^9.5.2",
     "@turf/distance": "^6.0.1",
-    "browserslist": "^4.14.0",
+    "browserslist": "^4.16.5",
     "cookie": "^0.4.1",
     "downshift": "^6.0.5",
     "escape-html": "^1.0.3",
