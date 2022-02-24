@@ -51,7 +51,8 @@ export default function Payment() {
     <div className={wrapper}>
       <h3 className={headline}>{t('paymentHeadline')}</h3>
       <p className={amount}>{formatNumber(cost, 2)} €</p>
-      <Select
+      {t('donationDisabled')}
+      {/* <Select
         value={value}
         options={options}
         onChange={onChange}
@@ -62,7 +63,7 @@ export default function Payment() {
       />
       <a href={href} className={button}>
         {t('makeDonation')}
-      </a>
+      </a> */}
     </div>
   );
 }
